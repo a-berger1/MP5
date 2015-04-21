@@ -62,6 +62,7 @@ public class main extends javax.swing.JFrame {
         getContentPane().setLayout(new java.awt.GridBagLayout());
 
         Workspace.setBackground(new java.awt.Color(255, 255, 255));
+        Workspace.setCursor(new java.awt.Cursor(java.awt.Cursor.CROSSHAIR_CURSOR));
 
         groundPanel.setBorder(javax.swing.BorderFactory.createMatteBorder(2, 2, 0, 2, new java.awt.Color(0, 0, 0)));
 
