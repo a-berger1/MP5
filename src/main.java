@@ -25,6 +25,7 @@ public class main extends javax.swing.JFrame {
     ArrayList<Line2D> lines = new ArrayList<Line2D>();
     boolean mouseReleased = false;
     boolean undoWire = false;
+    Color wireColor = Color.BLACK;
 
     /**
      * Creates new form main
@@ -68,7 +69,7 @@ public class main extends javax.swing.JFrame {
         WireColorPanel = new javax.swing.JPanel();
         Black = new javax.swing.JRadioButton();
         Red = new javax.swing.JRadioButton();
-        Grey = new javax.swing.JRadioButton();
+        Gray = new javax.swing.JRadioButton();
         Pink = new javax.swing.JRadioButton();
         removeWiresPanel = new javax.swing.JPanel();
         undoLastWireBtn = new javax.swing.JButton();
@@ -88,17 +89,17 @@ public class main extends javax.swing.JFrame {
 
         Workspace.setBackground(new java.awt.Color(255, 255, 255));
         Workspace.setCursor(new java.awt.Cursor(java.awt.Cursor.CROSSHAIR_CURSOR));
+        Workspace.addMouseMotionListener(new java.awt.event.MouseMotionAdapter() {
+            public void mouseDragged(java.awt.event.MouseEvent evt) {
+                WorkspaceMouseDragged(evt);
+            }
+        });
         Workspace.addMouseListener(new java.awt.event.MouseAdapter() {
             public void mousePressed(java.awt.event.MouseEvent evt) {
                 WorkspaceMousePressed(evt);
             }
             public void mouseReleased(java.awt.event.MouseEvent evt) {
                 WorkspaceMouseReleased(evt);
-            }
-        });
-        Workspace.addMouseMotionListener(new java.awt.event.MouseMotionAdapter() {
-            public void mouseDragged(java.awt.event.MouseEvent evt) {
-                WorkspaceMouseDragged(evt);
             }
         });
 
@@ -155,7 +156,7 @@ public class main extends javax.swing.JFrame {
 
         toolPanel.setLayout(new java.awt.GridLayout(0, 1));
 
-        WirePanel.setBorder(javax.swing.BorderFactory.createTitledBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(0, 0, 0)), "Wires", javax.swing.border.TitledBorder.CENTER, javax.swing.border.TitledBorder.DEFAULT_POSITION, new java.awt.Font("Consolas", 1, 24), new java.awt.Color(0, 0, 0))); // NOI18N
+        WirePanel.setBorder(javax.swing.BorderFactory.createTitledBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(0, 0, 0)), "Wires", javax.swing.border.TitledBorder.CENTER, javax.swing.border.TitledBorder.DEFAULT_POSITION, new java.awt.Font("Consolas", 1, 24))); // NOI18N
         WirePanel.setLayout(new java.awt.GridLayout(0, 1));
 
         WireColorPanel.setBorder(javax.swing.BorderFactory.createTitledBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(0, 0, 0)), "Color", javax.swing.border.TitledBorder.RIGHT, javax.swing.border.TitledBorder.DEFAULT_POSITION, new java.awt.Font("Consolas", 1, 14))); // NOI18N
@@ -163,18 +164,38 @@ public class main extends javax.swing.JFrame {
 
         WireColor.add(Black);
         Black.setText("Black");
+        Black.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                BlackActionPerformed(evt);
+            }
+        });
         WireColorPanel.add(Black);
 
         WireColor.add(Red);
         Red.setText("Red");
+        Red.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                RedActionPerformed(evt);
+            }
+        });
         WireColorPanel.add(Red);
 
-        WireColor.add(Grey);
-        Grey.setText("Grey");
-        WireColorPanel.add(Grey);
+        WireColor.add(Gray);
+        Gray.setText("Gray");
+        Gray.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                GrayActionPerformed(evt);
+            }
+        });
+        WireColorPanel.add(Gray);
 
         WireColor.add(Pink);
         Pink.setText("Pink");
+        Pink.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                PinkActionPerformed(evt);
+            }
+        });
         WireColorPanel.add(Pink);
 
         WirePanel.add(WireColorPanel);
@@ -208,7 +229,7 @@ public class main extends javax.swing.JFrame {
         gatesPanel.setLayout(gatesPanelLayout);
         gatesPanelLayout.setHorizontalGroup(
             gatesPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 115, Short.MAX_VALUE)
+            .addGap(0, 120, Short.MAX_VALUE)
         );
         gatesPanelLayout.setVerticalGroup(
             gatesPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -221,8 +242,8 @@ public class main extends javax.swing.JFrame {
         toolbar.setLayout(toolbarLayout);
         toolbarLayout.setHorizontalGroup(
             toolbarLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addComponent(toolbarLabel, javax.swing.GroupLayout.DEFAULT_SIZE, 125, Short.MAX_VALUE)
-            .addComponent(toolPanel, javax.swing.GroupLayout.PREFERRED_SIZE, 0, Short.MAX_VALUE)
+            .addComponent(toolbarLabel, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+            .addComponent(toolPanel, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
         );
         toolbarLayout.setVerticalGroup(
             toolbarLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -378,9 +399,9 @@ public class main extends javax.swing.JFrame {
     private void clearWiresBtnActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_clearWiresBtnActionPerformed
         // TODO add your handling code here:
         int i;
-        
+
         while (!lines.isEmpty()) {
-            i = lines.size()-1;
+            i = lines.size() - 1;
             lines.remove(i);
         }
         repaint();
@@ -389,13 +410,37 @@ public class main extends javax.swing.JFrame {
 
     private void undoLastWireBtnActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_undoLastWireBtnActionPerformed
         // TODO add your handling code here:
-        if(!lines.isEmpty()) {
-        lines.remove(lines.size() - 1);
-        undoWire = true;
-        repaint();
+        if (!lines.isEmpty()) {
+            lines.remove(lines.size() - 1);
+            undoWire = true;
+            repaint();
         }
 
     }//GEN-LAST:event_undoLastWireBtnActionPerformed
+
+    private void BlackActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_BlackActionPerformed
+        // TODO add your handling code here:
+        //changes the wire color to black
+        wireColor = Color.BLACK;
+    }//GEN-LAST:event_BlackActionPerformed
+
+    private void RedActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_RedActionPerformed
+        // TODO add your handling code here:
+        //changes the wire color to red
+        wireColor = Color.RED;
+    }//GEN-LAST:event_RedActionPerformed
+
+    private void GrayActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_GrayActionPerformed
+        // TODO add your handling code here:
+        //changes the wire color to gray
+        wireColor = Color.GRAY;
+    }//GEN-LAST:event_GrayActionPerformed
+
+    private void PinkActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_PinkActionPerformed
+        // TODO add your handling code here:
+        //changes the wire color to pink
+        wireColor = Color.PINK;
+    }//GEN-LAST:event_PinkActionPerformed
 
     /**
      * @param args the command line arguments
@@ -435,15 +480,17 @@ public class main extends javax.swing.JFrame {
     public void paint(Graphics g) {
         super.paint(g);
         Graphics2D g2 = (Graphics2D) g;
+        //Only runs while the mouse is being dragged. Constantly draws lines while the mouse is being dragged.
         if (pointStart != null) {
-            g.setColor(Color.RED);
+            g.setColor(wireColor);
             g2.setStroke(new BasicStroke(10));
             g2.drawLine(pointStart.x, pointStart.y, pointEnd.x, pointEnd.y);
 
         }
+        //Only runs if the mouse was just released or if the undoLastWireBtn is pressed. Keeps lines drawn on the screen
         if (mouseReleased || undoWire) {
             for (int i = 0; i < lines.size(); i++) {
-                g.setColor(Color.RED);
+                g.setColor(wireColor);
                 g2.setStroke(new BasicStroke(10));
                 g2.draw(lines.get(i));
             }
@@ -455,7 +502,7 @@ public class main extends javax.swing.JFrame {
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JRadioButton Black;
-    private javax.swing.JRadioButton Grey;
+    private javax.swing.JRadioButton Gray;
     private javax.swing.JRadioButton Pink;
     private javax.swing.JRadioButton Red;
     private javax.swing.JPanel Sidebar;
