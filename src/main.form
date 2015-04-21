@@ -46,7 +46,7 @@
                       <Component id="sourcePanel" alignment="1" max="32767" attributes="0"/>
                       <Component id="groundPanel" alignment="0" max="32767" attributes="0"/>
                       <Group type="102" alignment="1" attributes="0">
-                          <EmptySpace min="0" pref="892" max="32767" attributes="0"/>
+                          <EmptySpace min="0" pref="0" max="32767" attributes="0"/>
                           <Component id="toolbar" min="-2" max="-2" attributes="0"/>
                       </Group>
                   </Group>
@@ -122,7 +122,7 @@
               <Group type="103" groupAlignment="0" attributes="0">
                   <Group type="102" alignment="1" attributes="0">
                       <EmptySpace max="-2" attributes="0"/>
-                      <Component id="sourceLabel" max="32767" attributes="0"/>
+                      <Component id="sourceLabel" pref="1005" max="32767" attributes="0"/>
                       <EmptySpace max="-2" attributes="0"/>
                   </Group>
               </Group>
@@ -151,6 +151,9 @@
         </Container>
         <Container class="javax.swing.JPanel" name="toolbar">
           <Properties>
+            <Property name="background" type="java.awt.Color" editor="org.netbeans.beaninfo.editors.ColorEditor">
+              <Color blue="ff" green="ff" red="ff" type="rgb"/>
+            </Property>
             <Property name="border" type="javax.swing.border.Border" editor="org.netbeans.modules.form.editors2.BorderEditor">
               <Border info="org.netbeans.modules.form.compat2.border.MatteColorBorderInfo">
                 <MatteColorBorder bottom="2" left="2" right="2" top="2"/>
@@ -161,8 +164,8 @@
           <Layout>
             <DimensionLayout dim="0">
               <Group type="103" groupAlignment="0" attributes="0">
-                  <Component id="toolbarLabel" max="32767" attributes="0"/>
-                  <Component id="toolPanel" alignment="0" max="32767" attributes="0"/>
+                  <Component id="toolbarLabel" pref="117" max="32767" attributes="0"/>
+                  <Component id="toolPanel" alignment="0" pref="0" max="32767" attributes="0"/>
               </Group>
             </DimensionLayout>
             <DimensionLayout dim="1">
@@ -191,6 +194,11 @@
               </Properties>
             </Component>
             <Container class="javax.swing.JPanel" name="toolPanel">
+              <Properties>
+                <Property name="background" type="java.awt.Color" editor="org.netbeans.beaninfo.editors.ColorEditor">
+                  <Color blue="ff" green="ff" red="ff" type="rgb"/>
+                </Property>
+              </Properties>
 
               <Layout class="org.netbeans.modules.form.compat2.layouts.DesignGridLayout">
                 <Property name="columns" type="int" value="1"/>
@@ -199,6 +207,9 @@
               <SubComponents>
                 <Container class="javax.swing.JPanel" name="WirePanel">
                   <Properties>
+                    <Property name="background" type="java.awt.Color" editor="org.netbeans.beaninfo.editors.ColorEditor">
+                      <Color blue="ff" green="ff" red="ff" type="rgb"/>
+                    </Property>
                     <Property name="border" type="javax.swing.border.Border" editor="org.netbeans.modules.form.editors2.BorderEditor">
                       <Border info="org.netbeans.modules.form.compat2.border.TitledBorderInfo">
                         <TitledBorder justification="2" title="Wires">
@@ -218,6 +229,9 @@
                   <SubComponents>
                     <Container class="javax.swing.JPanel" name="WireColorPanel">
                       <Properties>
+                        <Property name="background" type="java.awt.Color" editor="org.netbeans.beaninfo.editors.ColorEditor">
+                          <Color blue="ff" green="ff" red="ff" type="rgb"/>
+                        </Property>
                         <Property name="border" type="javax.swing.border.Border" editor="org.netbeans.modules.form.editors2.BorderEditor">
                           <Border info="org.netbeans.modules.form.compat2.border.TitledBorderInfo">
                             <TitledBorder justification="3" title="Color">
@@ -238,6 +252,9 @@
                       <SubComponents>
                         <Component class="javax.swing.JRadioButton" name="Black">
                           <Properties>
+                            <Property name="background" type="java.awt.Color" editor="org.netbeans.beaninfo.editors.ColorEditor">
+                              <Color blue="ff" green="ff" id="white" palette="1" red="ff" type="palette"/>
+                            </Property>
                             <Property name="buttonGroup" type="javax.swing.ButtonGroup" editor="org.netbeans.modules.form.RADComponent$ButtonGroupPropertyEditor">
                               <ComponentRef name="WireColor"/>
                             </Property>
@@ -249,6 +266,9 @@
                         </Component>
                         <Component class="javax.swing.JRadioButton" name="Red">
                           <Properties>
+                            <Property name="background" type="java.awt.Color" editor="org.netbeans.beaninfo.editors.ColorEditor">
+                              <Color blue="ff" green="ff" id="white" palette="1" red="ff" type="palette"/>
+                            </Property>
                             <Property name="buttonGroup" type="javax.swing.ButtonGroup" editor="org.netbeans.modules.form.RADComponent$ButtonGroupPropertyEditor">
                               <ComponentRef name="WireColor"/>
                             </Property>
@@ -260,6 +280,9 @@
                         </Component>
                         <Component class="javax.swing.JRadioButton" name="Gray">
                           <Properties>
+                            <Property name="background" type="java.awt.Color" editor="org.netbeans.beaninfo.editors.ColorEditor">
+                              <Color blue="ff" green="ff" id="white" palette="1" red="ff" type="palette"/>
+                            </Property>
                             <Property name="buttonGroup" type="javax.swing.ButtonGroup" editor="org.netbeans.modules.form.RADComponent$ButtonGroupPropertyEditor">
                               <ComponentRef name="WireColor"/>
                             </Property>
@@ -271,6 +294,9 @@
                         </Component>
                         <Component class="javax.swing.JRadioButton" name="Pink">
                           <Properties>
+                            <Property name="background" type="java.awt.Color" editor="org.netbeans.beaninfo.editors.ColorEditor">
+                              <Color blue="ff" green="ff" id="white" palette="1" red="ff" type="palette"/>
+                            </Property>
                             <Property name="buttonGroup" type="javax.swing.ButtonGroup" editor="org.netbeans.modules.form.RADComponent$ButtonGroupPropertyEditor">
                               <ComponentRef name="WireColor"/>
                             </Property>
@@ -284,6 +310,9 @@
                     </Container>
                     <Container class="javax.swing.JPanel" name="removeWiresPanel">
                       <Properties>
+                        <Property name="background" type="java.awt.Color" editor="org.netbeans.beaninfo.editors.ColorEditor">
+                          <Color blue="ff" green="ff" red="ff" type="rgb"/>
+                        </Property>
                         <Property name="border" type="javax.swing.border.Border" editor="org.netbeans.modules.form.editors2.BorderEditor">
                           <Border info="org.netbeans.modules.form.compat2.border.TitledBorderInfo">
                             <TitledBorder justification="3" title="Remove">
@@ -303,15 +332,47 @@
                       <SubComponents>
                         <Component class="javax.swing.JButton" name="undoLastWireBtn">
                           <Properties>
-                            <Property name="text" type="java.lang.String" value="Undo Last Wire"/>
+                            <Property name="background" type="java.awt.Color" editor="org.netbeans.beaninfo.editors.ColorEditor">
+                              <Color blue="ff" green="ff" red="ff" type="rgb"/>
+                            </Property>
+                            <Property name="text" type="java.lang.String" value="Last Placed"/>
+                            <Property name="focusPainted" type="boolean" value="false"/>
+                            <Property name="focusable" type="boolean" value="false"/>
+                            <Property name="horizontalTextPosition" type="int" value="0"/>
+                            <Property name="opaque" type="boolean" value="false"/>
+                            <Property name="requestFocusEnabled" type="boolean" value="false"/>
                           </Properties>
                           <Events>
                             <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="undoLastWireBtnActionPerformed"/>
                           </Events>
                         </Component>
+                        <Component class="javax.swing.JButton" name="clearCurrentColorBtn">
+                          <Properties>
+                            <Property name="background" type="java.awt.Color" editor="org.netbeans.beaninfo.editors.ColorEditor">
+                              <Color blue="ff" green="ff" red="ff" type="rgb"/>
+                            </Property>
+                            <Property name="text" type="java.lang.String" value="Current Color"/>
+                            <Property name="focusPainted" type="boolean" value="false"/>
+                            <Property name="focusable" type="boolean" value="false"/>
+                            <Property name="horizontalTextPosition" type="int" value="0"/>
+                            <Property name="opaque" type="boolean" value="false"/>
+                            <Property name="requestFocusEnabled" type="boolean" value="false"/>
+                          </Properties>
+                          <Events>
+                            <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="clearCurrentColorBtnActionPerformed"/>
+                          </Events>
+                        </Component>
                         <Component class="javax.swing.JButton" name="clearWiresBtn">
                           <Properties>
-                            <Property name="text" type="java.lang.String" value="Clear Wires"/>
+                            <Property name="background" type="java.awt.Color" editor="org.netbeans.beaninfo.editors.ColorEditor">
+                              <Color blue="ff" green="ff" red="ff" type="rgb"/>
+                            </Property>
+                            <Property name="text" type="java.lang.String" value="All WIres"/>
+                            <Property name="focusPainted" type="boolean" value="false"/>
+                            <Property name="focusable" type="boolean" value="false"/>
+                            <Property name="horizontalTextPosition" type="int" value="0"/>
+                            <Property name="opaque" type="boolean" value="false"/>
+                            <Property name="requestFocusEnabled" type="boolean" value="false"/>
                           </Properties>
                           <Events>
                             <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="clearWiresBtnActionPerformed"/>
@@ -323,6 +384,9 @@
                 </Container>
                 <Container class="javax.swing.JPanel" name="gatesPanel">
                   <Properties>
+                    <Property name="background" type="java.awt.Color" editor="org.netbeans.beaninfo.editors.ColorEditor">
+                      <Color blue="ff" green="ff" id="white" palette="1" red="ff" type="palette"/>
+                    </Property>
                     <Property name="border" type="javax.swing.border.Border" editor="org.netbeans.modules.form.editors2.BorderEditor">
                       <Border info="org.netbeans.modules.form.compat2.border.TitledBorderInfo">
                         <TitledBorder justification="2" title="Gates">
@@ -338,7 +402,7 @@
                   <Layout>
                     <DimensionLayout dim="0">
                       <Group type="103" groupAlignment="0" attributes="0">
-                          <EmptySpace min="0" pref="120" max="32767" attributes="0"/>
+                          <EmptySpace min="0" pref="107" max="32767" attributes="0"/>
                       </Group>
                     </DimensionLayout>
                     <DimensionLayout dim="1">
@@ -393,7 +457,7 @@
               <Group type="103" groupAlignment="0" attributes="0">
                   <Group type="102" alignment="0" attributes="0">
                       <EmptySpace min="0" pref="0" max="-2" attributes="0"/>
-                      <Component id="jScrollPane1" pref="178" max="32767" attributes="0"/>
+                      <Component id="jScrollPane1" pref="175" max="32767" attributes="0"/>
                   </Group>
               </Group>
             </DimensionLayout>
@@ -486,7 +550,7 @@
           <Layout>
             <DimensionLayout dim="0">
               <Group type="103" groupAlignment="0" attributes="0">
-                  <EmptySpace min="0" pref="178" max="32767" attributes="0"/>
+                  <EmptySpace min="0" pref="175" max="32767" attributes="0"/>
               </Group>
             </DimensionLayout>
             <DimensionLayout dim="1">

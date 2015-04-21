@@ -66,6 +66,7 @@ public class main extends javax.swing.JFrame {
         Pink = new javax.swing.JRadioButton();
         removeWiresPanel = new javax.swing.JPanel();
         undoLastWireBtn = new javax.swing.JButton();
+        clearCurrentColorBtn = new javax.swing.JButton();
         clearWiresBtn = new javax.swing.JButton();
         gatesPanel = new javax.swing.JPanel();
         Sidebar = new javax.swing.JPanel();
@@ -116,7 +117,7 @@ public class main extends javax.swing.JFrame {
             sourcePanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, sourcePanelLayout.createSequentialGroup()
                 .addContainerGap()
-                .addComponent(sourceLabel, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                .addComponent(sourceLabel, javax.swing.GroupLayout.DEFAULT_SIZE, 1005, Short.MAX_VALUE)
                 .addContainerGap())
         );
         sourcePanelLayout.setVerticalGroup(
@@ -124,6 +125,7 @@ public class main extends javax.swing.JFrame {
             .addComponent(sourceLabel, javax.swing.GroupLayout.DEFAULT_SIZE, 50, Short.MAX_VALUE)
         );
 
+        toolbar.setBackground(new java.awt.Color(255, 255, 255));
         toolbar.setBorder(javax.swing.BorderFactory.createMatteBorder(2, 2, 2, 2, new java.awt.Color(0, 0, 0)));
 
         toolbarLabel.setFont(new java.awt.Font("Consolas", 1, 18)); // NOI18N
@@ -131,14 +133,18 @@ public class main extends javax.swing.JFrame {
         toolbarLabel.setText("Toolbar");
         toolbarLabel.setBorder(javax.swing.BorderFactory.createMatteBorder(0, 0, 2, 0, new java.awt.Color(0, 0, 0)));
 
+        toolPanel.setBackground(new java.awt.Color(255, 255, 255));
         toolPanel.setLayout(new java.awt.GridLayout(0, 1));
 
+        WirePanel.setBackground(new java.awt.Color(255, 255, 255));
         WirePanel.setBorder(javax.swing.BorderFactory.createTitledBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(0, 0, 0)), "Wires", javax.swing.border.TitledBorder.CENTER, javax.swing.border.TitledBorder.DEFAULT_POSITION, new java.awt.Font("Consolas", 1, 24))); // NOI18N
         WirePanel.setLayout(new java.awt.GridLayout(0, 1));
 
+        WireColorPanel.setBackground(new java.awt.Color(255, 255, 255));
         WireColorPanel.setBorder(javax.swing.BorderFactory.createTitledBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(0, 0, 0)), "Color", javax.swing.border.TitledBorder.RIGHT, javax.swing.border.TitledBorder.DEFAULT_POSITION, new java.awt.Font("Consolas", 1, 14))); // NOI18N
         WireColorPanel.setLayout(new java.awt.GridLayout(0, 1, 5, 0));
 
+        Black.setBackground(java.awt.Color.white);
         WireColor.add(Black);
         Black.setText("Black");
         Black.addActionListener(new java.awt.event.ActionListener() {
@@ -148,6 +154,7 @@ public class main extends javax.swing.JFrame {
         });
         WireColorPanel.add(Black);
 
+        Red.setBackground(java.awt.Color.white);
         WireColor.add(Red);
         Red.setText("Red");
         Red.addActionListener(new java.awt.event.ActionListener() {
@@ -157,6 +164,7 @@ public class main extends javax.swing.JFrame {
         });
         WireColorPanel.add(Red);
 
+        Gray.setBackground(java.awt.Color.white);
         WireColor.add(Gray);
         Gray.setText("Gray");
         Gray.addActionListener(new java.awt.event.ActionListener() {
@@ -166,6 +174,7 @@ public class main extends javax.swing.JFrame {
         });
         WireColorPanel.add(Gray);
 
+        Pink.setBackground(java.awt.Color.white);
         WireColor.add(Pink);
         Pink.setText("Pink");
         Pink.addActionListener(new java.awt.event.ActionListener() {
@@ -177,10 +186,17 @@ public class main extends javax.swing.JFrame {
 
         WirePanel.add(WireColorPanel);
 
+        removeWiresPanel.setBackground(new java.awt.Color(255, 255, 255));
         removeWiresPanel.setBorder(javax.swing.BorderFactory.createTitledBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(0, 0, 0)), "Remove", javax.swing.border.TitledBorder.RIGHT, javax.swing.border.TitledBorder.DEFAULT_POSITION, new java.awt.Font("Consolas", 1, 14))); // NOI18N
         removeWiresPanel.setLayout(new java.awt.GridLayout(0, 1));
 
-        undoLastWireBtn.setText("Undo Last Wire");
+        undoLastWireBtn.setBackground(new java.awt.Color(255, 255, 255));
+        undoLastWireBtn.setText("Last Placed");
+        undoLastWireBtn.setFocusPainted(false);
+        undoLastWireBtn.setFocusable(false);
+        undoLastWireBtn.setHorizontalTextPosition(javax.swing.SwingConstants.CENTER);
+        undoLastWireBtn.setOpaque(false);
+        undoLastWireBtn.setRequestFocusEnabled(false);
         undoLastWireBtn.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 undoLastWireBtnActionPerformed(evt);
@@ -188,7 +204,27 @@ public class main extends javax.swing.JFrame {
         });
         removeWiresPanel.add(undoLastWireBtn);
 
-        clearWiresBtn.setText("Clear Wires");
+        clearCurrentColorBtn.setBackground(new java.awt.Color(255, 255, 255));
+        clearCurrentColorBtn.setText("Current Color");
+        clearCurrentColorBtn.setFocusPainted(false);
+        clearCurrentColorBtn.setFocusable(false);
+        clearCurrentColorBtn.setHorizontalTextPosition(javax.swing.SwingConstants.CENTER);
+        clearCurrentColorBtn.setOpaque(false);
+        clearCurrentColorBtn.setRequestFocusEnabled(false);
+        clearCurrentColorBtn.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                clearCurrentColorBtnActionPerformed(evt);
+            }
+        });
+        removeWiresPanel.add(clearCurrentColorBtn);
+
+        clearWiresBtn.setBackground(new java.awt.Color(255, 255, 255));
+        clearWiresBtn.setText("All WIres");
+        clearWiresBtn.setFocusPainted(false);
+        clearWiresBtn.setFocusable(false);
+        clearWiresBtn.setHorizontalTextPosition(javax.swing.SwingConstants.CENTER);
+        clearWiresBtn.setOpaque(false);
+        clearWiresBtn.setRequestFocusEnabled(false);
         clearWiresBtn.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 clearWiresBtnActionPerformed(evt);
@@ -200,13 +236,14 @@ public class main extends javax.swing.JFrame {
 
         toolPanel.add(WirePanel);
 
+        gatesPanel.setBackground(java.awt.Color.white);
         gatesPanel.setBorder(javax.swing.BorderFactory.createTitledBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(0, 0, 0)), "Gates", javax.swing.border.TitledBorder.CENTER, javax.swing.border.TitledBorder.DEFAULT_POSITION, new java.awt.Font("Consolas", 1, 24))); // NOI18N
 
         javax.swing.GroupLayout gatesPanelLayout = new javax.swing.GroupLayout(gatesPanel);
         gatesPanel.setLayout(gatesPanelLayout);
         gatesPanelLayout.setHorizontalGroup(
             gatesPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 120, Short.MAX_VALUE)
+            .addGap(0, 107, Short.MAX_VALUE)
         );
         gatesPanelLayout.setVerticalGroup(
             gatesPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -219,8 +256,8 @@ public class main extends javax.swing.JFrame {
         toolbar.setLayout(toolbarLayout);
         toolbarLayout.setHorizontalGroup(
             toolbarLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addComponent(toolbarLabel, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-            .addComponent(toolPanel, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+            .addComponent(toolbarLabel, javax.swing.GroupLayout.DEFAULT_SIZE, 117, Short.MAX_VALUE)
+            .addComponent(toolPanel, javax.swing.GroupLayout.PREFERRED_SIZE, 0, Short.MAX_VALUE)
         );
         toolbarLayout.setVerticalGroup(
             toolbarLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -240,7 +277,7 @@ public class main extends javax.swing.JFrame {
                     .addComponent(sourcePanel, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                     .addComponent(groundPanel, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                     .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, WorkspaceLayout.createSequentialGroup()
-                        .addGap(0, 892, Short.MAX_VALUE)
+                        .addGap(0, 0, Short.MAX_VALUE)
                         .addComponent(toolbar, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)))
                 .addContainerGap())
         );
@@ -301,7 +338,7 @@ public class main extends javax.swing.JFrame {
             textPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(textPanelLayout.createSequentialGroup()
                 .addGap(0, 0, 0)
-                .addComponent(jScrollPane1, javax.swing.GroupLayout.DEFAULT_SIZE, 178, Short.MAX_VALUE))
+                .addComponent(jScrollPane1, javax.swing.GroupLayout.DEFAULT_SIZE, 175, Short.MAX_VALUE))
         );
         textPanelLayout.setVerticalGroup(
             textPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -327,7 +364,7 @@ public class main extends javax.swing.JFrame {
         navBox.setLayout(navBoxLayout);
         navBoxLayout.setHorizontalGroup(
             navBoxLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 178, Short.MAX_VALUE)
+            .addGap(0, 175, Short.MAX_VALUE)
         );
         navBoxLayout.setVerticalGroup(
             navBoxLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -400,6 +437,10 @@ public class main extends javax.swing.JFrame {
         Workspace.wireColor = Color.PINK;
     }//GEN-LAST:event_PinkActionPerformed
 
+    private void clearCurrentColorBtnActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_clearCurrentColorBtnActionPerformed
+       Workspace.clearCurrentColorWires();
+    }//GEN-LAST:event_clearCurrentColorBtnActionPerformed
+
     /**
      * @param args the command line arguments
      */
@@ -449,6 +490,7 @@ public class main extends javax.swing.JFrame {
     private javax.swing.JPanel WireColorPanel;
     private javax.swing.JPanel WirePanel;
     private Workspace Workspace;
+    private javax.swing.JButton clearCurrentColorBtn;
     private javax.swing.JButton clearWiresBtn;
     private javax.swing.JPanel gatesPanel;
     private javax.swing.JLabel groundLabel;

@@ -5,11 +5,13 @@
  */
 
 import javax.swing.JLabel;
+
 /**
  *
  * @author Noah
  */
-public class Gate extends JLabel {
+public abstract class Gate extends JLabel {
+
     public boolean input1;
     public boolean input2;
     public boolean output;
@@ -17,17 +19,9 @@ public class Gate extends JLabel {
     public boolean grounded;
 
     public Gate() {
-        
-    }
-    
-    
-    public boolean isConnected() {
-        return false;
+
     }
 
-
-
-
+    public abstract boolean isConnected();
 
 }
-

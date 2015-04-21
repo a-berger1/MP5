@@ -15,25 +15,53 @@ public class Transistor extends Gate {
     public boolean output;
     public boolean source;
     public boolean grounded;
-    
-    
+
+    public boolean isInput() {
+        return input;
+    }
+
+    public void setInput(boolean input) {
+        this.input = input;
+    }
+
+    public boolean isOutput() {
+        return output;
+    }
+
+    public void setOutput(boolean output) {
+        this.output = output;
+    }
+
+    public boolean isSource() {
+        return source;
+    }
+
+    public void setSource(boolean source) {
+        this.source = source;
+    }
+
+    public boolean isGrounded() {
+        return grounded;
+    }
+
+    public void setGrounded(boolean grounded) {
+        this.grounded = grounded;
+    }
+
     public void setInput() {
         input ^= true;
     }
-    
+
     public void setOutput() {
         output ^= true;
     }
-    
+
     public void setSource() {
         source ^= true;
     }
-    
+
     public void setGrounded() {
         grounded ^= true;
     }
-    
-    
-    
-    
+
 }

@@ -10,8 +10,6 @@ import java.awt.geom.Line2D;
 import java.util.ArrayList;
 import javax.swing.JPanel;
 
-
-
 /*
  * To change this license header, choose License Headers in Project Properties.
  * To change this template file, choose Tools | Templates
@@ -36,7 +34,7 @@ public class Workspace extends JPanel {
      */
     public Workspace() {
         initComponents();
-       
+
     }
 
     /**
@@ -64,22 +62,30 @@ public class Workspace extends JPanel {
     }// </editor-fold>//GEN-END:initComponents
 
     private void formMousePressed(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_formMousePressed
-          
-                pointStart = evt.getPoint();
+        pointStart = evt.getPoint();
     }//GEN-LAST:event_formMousePressed
 
     private void formMouseDragged(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_formMouseDragged
         pointEnd = evt.getPoint();
-                repaint();
+        repaint();
     }//GEN-LAST:event_formMouseDragged
 
     private void formMouseReleased(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_formMouseReleased
-         mouseReleased = true;
-                wires.add(new Wire(pointStart, pointEnd, wireColor));
-                
-                repaint();
-                pointStart = null;//To change body of generated methods, choose Tools | Templates.
+        mouseReleased = true;
+        wires.add(new Wire(pointStart, pointEnd, wireColor));
+
+        repaint();
+        pointStart = null;//To change body of generated methods, choose Tools | Templates.
     }//GEN-LAST:event_formMouseReleased
+
+    public void clearCurrentColorWires() {
+        for (int i = wires.size()-1; i >= 0; i--) {
+            if (wires.get(i).getColor() == wireColor) {
+                wires.remove(i);
+            }
+        }
+        repaint();
+    }
 
     public void paint(Graphics g) {
         super.paint(g);
@@ -92,15 +98,15 @@ public class Workspace extends JPanel {
 
         }
         //Only runs if the mouse was just released or if the undoLastWireBtn is pressed. Keeps wires drawn on the screen
-        
-            for (int i = 0; i < wires.size(); i++) {
-                g.setColor(wires.get(i).getColor());
-                g2.setStroke(new BasicStroke(10));
-                g2.draw(wires.get(i));
-            }
-            mouseReleased = false;
-            undoWire = false;
-        
+
+        for (int i = 0; i < wires.size(); i++) {
+            g.setColor(wires.get(i).getColor());
+            g2.setStroke(new BasicStroke(10));
+            g2.draw(wires.get(i));
+        }
+        mouseReleased = false;
+        undoWire = false;
+
     }
     // Variables declaration - do not modify//GEN-BEGIN:variables
     // End of variables declaration//GEN-END:variables
