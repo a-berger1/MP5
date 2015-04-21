@@ -63,5 +63,8 @@ public class Transistor extends Gate {
     public void setGrounded() {
         grounded ^= true;
     }
+    public boolean isConnected() {
+        return false;
+    }
 
 }
