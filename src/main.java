@@ -3,15 +3,28 @@
  * To change this template file, choose Tools | Templates
  * and open the template in the editor.
  */
+
 import java.util.logging.Level;
 import java.util.logging.Logger;
 import javax.swing.UIManager;
 import javax.swing.UnsupportedLookAndFeelException;
+import java.awt.*;
+import java.awt.geom.Line2D;
+import java.util.ArrayList;
+
 /**
  *
  * @author a-berger.1
  */
 public class main extends javax.swing.JFrame {
+
+    int startingX;
+    int startingY;
+    Point pointStart;
+    Point pointEnd;
+    ArrayList<Line2D> lines = new ArrayList<Line2D>();
+    boolean mouseReleased = false;
+    boolean undoWire = false;
 
     /**
      * Creates new form main
@@ -51,6 +64,8 @@ public class main extends javax.swing.JFrame {
         jLabel1 = new javax.swing.JLabel();
         jPanel1 = new javax.swing.JPanel();
         jPanel2 = new javax.swing.JPanel();
+        clearWiresBtn = new javax.swing.JButton();
+        undoLastWireBtn = new javax.swing.JButton();
         Sidebar = new javax.swing.JPanel();
         textPanel = new javax.swing.JPanel();
         jScrollPane1 = new javax.swing.JScrollPane();
@@ -65,6 +80,19 @@ public class main extends javax.swing.JFrame {
 
         Workspace.setBackground(new java.awt.Color(255, 255, 255));
         Workspace.setCursor(new java.awt.Cursor(java.awt.Cursor.CROSSHAIR_CURSOR));
+        Workspace.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mousePressed(java.awt.event.MouseEvent evt) {
+                WorkspaceMousePressed(evt);
+            }
+            public void mouseReleased(java.awt.event.MouseEvent evt) {
+                WorkspaceMouseReleased(evt);
+            }
+        });
+        Workspace.addMouseMotionListener(new java.awt.event.MouseMotionAdapter() {
+            public void mouseDragged(java.awt.event.MouseEvent evt) {
+                WorkspaceMouseDragged(evt);
+            }
+        });
 
         groundPanel.setBorder(javax.swing.BorderFactory.createMatteBorder(2, 2, 0, 2, new java.awt.Color(0, 0, 0)));
 
@@ -117,17 +145,41 @@ public class main extends javax.swing.JFrame {
         jLabel1.setText("Toolbar");
         jLabel1.setBorder(javax.swing.BorderFactory.createMatteBorder(0, 0, 2, 0, new java.awt.Color(0, 0, 0)));
 
-        jPanel1.setLayout(new java.awt.GridLayout());
+        jPanel1.setLayout(new java.awt.GridLayout(1, 0));
+
+        clearWiresBtn.setText("Clear Wires");
+        clearWiresBtn.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                clearWiresBtnActionPerformed(evt);
+            }
+        });
+
+        undoLastWireBtn.setText("Undo Last Wire");
+        undoLastWireBtn.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                undoLastWireBtnActionPerformed(evt);
+            }
+        });
 
         javax.swing.GroupLayout jPanel2Layout = new javax.swing.GroupLayout(jPanel2);
         jPanel2.setLayout(jPanel2Layout);
         jPanel2Layout.setHorizontalGroup(
             jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 100, Short.MAX_VALUE)
+            .addGroup(jPanel2Layout.createSequentialGroup()
+                .addContainerGap()
+                .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                    .addComponent(clearWiresBtn, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                    .addComponent(undoLastWireBtn, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
         jPanel2Layout.setVerticalGroup(
             jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 411, Short.MAX_VALUE)
+            .addGroup(jPanel2Layout.createSequentialGroup()
+                .addContainerGap()
+                .addComponent(clearWiresBtn)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                .addComponent(undoLastWireBtn)
+                .addContainerGap(343, Short.MAX_VALUE))
         );
 
         jPanel1.add(jPanel2);
@@ -270,6 +322,48 @@ public class main extends javax.swing.JFrame {
         pack();
     }// </editor-fold>//GEN-END:initComponents
 
+    private void WorkspaceMousePressed(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_WorkspaceMousePressed
+        // TODO add your handling code here:
+        pointStart = evt.getPoint();
+
+    }//GEN-LAST:event_WorkspaceMousePressed
+
+    private void WorkspaceMouseDragged(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_WorkspaceMouseDragged
+        // TODO add your handling code here:
+        pointEnd = evt.getPoint();
+        repaint();
+    }//GEN-LAST:event_WorkspaceMouseDragged
+
+    private void WorkspaceMouseReleased(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_WorkspaceMouseReleased
+        // TODO add your handling code here:
+        mouseReleased = true;
+        lines.add(new Line2D.Double(pointStart, pointEnd));
+        repaint();
+        pointStart = null;
+    }//GEN-LAST:event_WorkspaceMouseReleased
+
+    private void clearWiresBtnActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_clearWiresBtnActionPerformed
+        // TODO add your handling code here:
+        int i;
+        
+        while (!lines.isEmpty()) {
+            i = lines.size()-1;
+            lines.remove(i);
+        }
+        repaint();
+
+    }//GEN-LAST:event_clearWiresBtnActionPerformed
+
+    private void undoLastWireBtnActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_undoLastWireBtnActionPerformed
+        // TODO add your handling code here:
+        if(!lines.isEmpty()) {
+        lines.remove(lines.size() - 1);
+        undoWire = true;
+        repaint();
+        }
+
+    }//GEN-LAST:event_undoLastWireBtnActionPerformed
+
     /**
      * @param args the command line arguments
      */
@@ -305,9 +399,30 @@ public class main extends javax.swing.JFrame {
         });
     }
 
+    public void paint(Graphics g) {
+        super.paint(g);
+        Graphics2D g2 = (Graphics2D) g;
+        if (pointStart != null) {
+            g.setColor(Color.RED);
+            g2.setStroke(new BasicStroke(10));
+            g2.drawLine(pointStart.x, pointStart.y, pointEnd.x, pointEnd.y);
+
+        }
+        if (mouseReleased || undoWire) {
+            for (int i = 0; i < lines.size(); i++) {
+                g.setColor(Color.RED);
+                g2.setStroke(new BasicStroke(10));
+                g2.draw(lines.get(i));
+            }
+            mouseReleased = false;
+        }
+    }
+
+
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JPanel Sidebar;
     private javax.swing.JPanel Workspace;
+    private javax.swing.JButton clearWiresBtn;
     private javax.swing.JLabel groundLabel;
     private javax.swing.JPanel groundPanel;
     private javax.swing.JLabel jLabel1;
@@ -320,5 +435,6 @@ public class main extends javax.swing.JFrame {
     private javax.swing.JPanel sourcePanel;
     private javax.swing.JPanel textPanel;
     private javax.swing.JPanel toolbar;
+    private javax.swing.JButton undoLastWireBtn;
     // End of variables declaration//GEN-END:variables
 }
