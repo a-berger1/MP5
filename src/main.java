@@ -9,8 +9,6 @@ import java.util.logging.Logger;
 import javax.swing.UIManager;
 import javax.swing.UnsupportedLookAndFeelException;
 import java.awt.*;
-import java.awt.geom.Line2D;
-import java.util.ArrayList;
 
 /**
  *
@@ -18,14 +16,8 @@ import java.util.ArrayList;
  */
 public class main extends javax.swing.JFrame {
 
-    int startingX;
-    int startingY;
-    Point pointStart;
-    Point pointEnd;
-    ArrayList<Line2D> lines = new ArrayList<Line2D>();
-    boolean mouseReleased = false;
-    boolean undoWire = false;
-    Color wireColor = Color.BLACK;
+   
+    
 
     /**
      * Creates new form main
@@ -44,6 +36,7 @@ public class main extends javax.swing.JFrame {
         }
         initComponents();
         this.setExtendedState(this.MAXIMIZED_BOTH);
+     
     }
 
     /**
@@ -57,7 +50,7 @@ public class main extends javax.swing.JFrame {
         java.awt.GridBagConstraints gridBagConstraints;
 
         WireColor = new javax.swing.ButtonGroup();
-        Workspace = new javax.swing.JPanel();
+        Workspace = new Workspace();
         groundPanel = new javax.swing.JPanel();
         groundLabel = new javax.swing.JLabel();
         sourcePanel = new javax.swing.JPanel();
@@ -87,22 +80,6 @@ public class main extends javax.swing.JFrame {
         setResizable(false);
         getContentPane().setLayout(new java.awt.GridBagLayout());
 
-        Workspace.setBackground(new java.awt.Color(255, 255, 255));
-        Workspace.setCursor(new java.awt.Cursor(java.awt.Cursor.CROSSHAIR_CURSOR));
-        Workspace.addMouseMotionListener(new java.awt.event.MouseMotionAdapter() {
-            public void mouseDragged(java.awt.event.MouseEvent evt) {
-                WorkspaceMouseDragged(evt);
-            }
-        });
-        Workspace.addMouseListener(new java.awt.event.MouseAdapter() {
-            public void mousePressed(java.awt.event.MouseEvent evt) {
-                WorkspaceMousePressed(evt);
-            }
-            public void mouseReleased(java.awt.event.MouseEvent evt) {
-                WorkspaceMouseReleased(evt);
-            }
-        });
-
         groundPanel.setBorder(javax.swing.BorderFactory.createMatteBorder(2, 2, 0, 2, new java.awt.Color(0, 0, 0)));
 
         groundLabel.setBackground(new java.awt.Color(255, 255, 255));
@@ -117,7 +94,7 @@ public class main extends javax.swing.JFrame {
             groundPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, groundPanelLayout.createSequentialGroup()
                 .addContainerGap()
-                .addComponent(groundLabel, javax.swing.GroupLayout.DEFAULT_SIZE, 741, Short.MAX_VALUE)
+                .addComponent(groundLabel, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                 .addContainerGap())
         );
         groundPanelLayout.setVerticalGroup(
@@ -263,7 +240,7 @@ public class main extends javax.swing.JFrame {
                     .addComponent(sourcePanel, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                     .addComponent(groundPanel, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                     .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, WorkspaceLayout.createSequentialGroup()
-                        .addGap(0, 0, Short.MAX_VALUE)
+                        .addGap(0, 892, Short.MAX_VALUE)
                         .addComponent(toolbar, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)))
                 .addContainerGap())
         );
@@ -273,16 +250,17 @@ public class main extends javax.swing.JFrame {
                 .addComponent(sourcePanel, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(18, 18, 18)
                 .addComponent(toolbar, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                .addGap(18, 18, 18)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                 .addComponent(groundPanel, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
         );
 
         gridBagConstraints = new java.awt.GridBagConstraints();
         gridBagConstraints.gridx = 0;
         gridBagConstraints.gridy = 0;
+        gridBagConstraints.gridwidth = java.awt.GridBagConstraints.RELATIVE;
+        gridBagConstraints.gridheight = java.awt.GridBagConstraints.RELATIVE;
         gridBagConstraints.fill = java.awt.GridBagConstraints.BOTH;
-        gridBagConstraints.anchor = java.awt.GridBagConstraints.FIRST_LINE_START;
-        gridBagConstraints.weightx = 0.8;
+        gridBagConstraints.weightx = 0.85;
         gridBagConstraints.weighty = 1.0;
         getContentPane().add(Workspace, gridBagConstraints);
 
@@ -322,14 +300,14 @@ public class main extends javax.swing.JFrame {
         textPanelLayout.setHorizontalGroup(
             textPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(textPanelLayout.createSequentialGroup()
-                .addContainerGap()
-                .addComponent(jScrollPane1, javax.swing.GroupLayout.DEFAULT_SIZE, 182, Short.MAX_VALUE))
+                .addGap(0, 0, 0)
+                .addComponent(jScrollPane1, javax.swing.GroupLayout.DEFAULT_SIZE, 178, Short.MAX_VALUE))
         );
         textPanelLayout.setVerticalGroup(
             textPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(textPanelLayout.createSequentialGroup()
                 .addContainerGap()
-                .addComponent(jScrollPane1, javax.swing.GroupLayout.DEFAULT_SIZE, 456, Short.MAX_VALUE)
+                .addComponent(jScrollPane1, javax.swing.GroupLayout.DEFAULT_SIZE, 451, Short.MAX_VALUE)
                 .addContainerGap())
         );
 
@@ -349,11 +327,11 @@ public class main extends javax.swing.JFrame {
         navBox.setLayout(navBoxLayout);
         navBoxLayout.setHorizontalGroup(
             navBoxLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 192, Short.MAX_VALUE)
+            .addGap(0, 178, Short.MAX_VALUE)
         );
         navBoxLayout.setVerticalGroup(
             navBoxLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 193, Short.MAX_VALUE)
+            .addGap(0, 191, Short.MAX_VALUE)
         );
 
         gridBagConstraints = new java.awt.GridBagConstraints();
@@ -369,40 +347,20 @@ public class main extends javax.swing.JFrame {
         gridBagConstraints.gridy = 0;
         gridBagConstraints.fill = java.awt.GridBagConstraints.BOTH;
         gridBagConstraints.anchor = java.awt.GridBagConstraints.FIRST_LINE_START;
-        gridBagConstraints.weightx = 0.2;
+        gridBagConstraints.weightx = 0.15;
         gridBagConstraints.weighty = 1.0;
         getContentPane().add(Sidebar, gridBagConstraints);
 
         pack();
     }// </editor-fold>//GEN-END:initComponents
 
-    private void WorkspaceMousePressed(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_WorkspaceMousePressed
-        // TODO add your handling code here:
-        pointStart = evt.getPoint();
-
-    }//GEN-LAST:event_WorkspaceMousePressed
-
-    private void WorkspaceMouseDragged(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_WorkspaceMouseDragged
-        // TODO add your handling code here:
-        pointEnd = evt.getPoint();
-        repaint();
-    }//GEN-LAST:event_WorkspaceMouseDragged
-
-    private void WorkspaceMouseReleased(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_WorkspaceMouseReleased
-        // TODO add your handling code here:
-        mouseReleased = true;
-        lines.add(new Line2D.Double(pointStart, pointEnd));
-        repaint();
-        pointStart = null;
-    }//GEN-LAST:event_WorkspaceMouseReleased
-
     private void clearWiresBtnActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_clearWiresBtnActionPerformed
         // TODO add your handling code here:
         int i;
 
-        while (!lines.isEmpty()) {
-            i = lines.size() - 1;
-            lines.remove(i);
+        while (!Workspace.wires.isEmpty()) {
+            i = Workspace.wires.size() - 1;
+            Workspace.wires.remove(i);
         }
         repaint();
 
@@ -410,10 +368,10 @@ public class main extends javax.swing.JFrame {
 
     private void undoLastWireBtnActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_undoLastWireBtnActionPerformed
         // TODO add your handling code here:
-        if (!lines.isEmpty()) {
-            lines.remove(lines.size() - 1);
-            undoWire = true;
-            repaint();
+        if (!Workspace.wires.isEmpty()) {
+            Workspace.wires.remove(Workspace.wires.size() - 1);
+            Workspace.undoWire = true;
+            Workspace.repaint();
         }
 
     }//GEN-LAST:event_undoLastWireBtnActionPerformed
@@ -421,25 +379,25 @@ public class main extends javax.swing.JFrame {
     private void BlackActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_BlackActionPerformed
         // TODO add your handling code here:
         //changes the wire color to black
-        wireColor = Color.BLACK;
+        Workspace.wireColor = Color.BLACK;
     }//GEN-LAST:event_BlackActionPerformed
 
     private void RedActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_RedActionPerformed
         // TODO add your handling code here:
         //changes the wire color to red
-        wireColor = Color.RED;
+        Workspace.wireColor = Color.RED;
     }//GEN-LAST:event_RedActionPerformed
 
     private void GrayActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_GrayActionPerformed
         // TODO add your handling code here:
         //changes the wire color to gray
-        wireColor = Color.GRAY;
+        Workspace.wireColor = Color.GRAY;
     }//GEN-LAST:event_GrayActionPerformed
 
     private void PinkActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_PinkActionPerformed
         // TODO add your handling code here:
         //changes the wire color to pink
-        wireColor = Color.PINK;
+        Workspace.wireColor = Color.PINK;
     }//GEN-LAST:event_PinkActionPerformed
 
     /**
@@ -477,27 +435,8 @@ public class main extends javax.swing.JFrame {
         });
     }
 
-    public void paint(Graphics g) {
-        super.paint(g);
-        Graphics2D g2 = (Graphics2D) g;
-        //Only runs while the mouse is being dragged. Constantly draws lines while the mouse is being dragged.
-        if (pointStart != null) {
-            g.setColor(wireColor);
-            g2.setStroke(new BasicStroke(10));
-            g2.drawLine(pointStart.x, pointStart.y, pointEnd.x, pointEnd.y);
-
-        }
-        //Only runs if the mouse was just released or if the undoLastWireBtn is pressed. Keeps lines drawn on the screen
-        if (mouseReleased || undoWire) {
-            for (int i = 0; i < lines.size(); i++) {
-                g.setColor(wireColor);
-                g2.setStroke(new BasicStroke(10));
-                g2.draw(lines.get(i));
-            }
-            mouseReleased = false;
-            undoWire = false;
-        }
-    }
+    
+   
 
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
@@ -509,7 +448,7 @@ public class main extends javax.swing.JFrame {
     private javax.swing.ButtonGroup WireColor;
     private javax.swing.JPanel WireColorPanel;
     private javax.swing.JPanel WirePanel;
-    private javax.swing.JPanel Workspace;
+    private Workspace Workspace;
     private javax.swing.JButton clearWiresBtn;
     private javax.swing.JPanel gatesPanel;
     private javax.swing.JLabel groundLabel;

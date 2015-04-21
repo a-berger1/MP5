@@ -4,12 +4,12 @@
  * and open the template in the editor.
  */
 
-
+import javax.swing.JLabel;
 /**
  *
  * @author Noah
  */
-public class Gate {
+public class Gate extends JLabel {
     public boolean input1;
     public boolean input2;
     public boolean output;
