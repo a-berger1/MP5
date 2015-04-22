@@ -63,6 +63,7 @@ public class Workspace extends JPanel {
 
     private void formMousePressed(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_formMousePressed
         pointStart = evt.getPoint();
+        pointEnd= pointStart;
     }//GEN-LAST:event_formMousePressed
 
     private void formMouseDragged(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_formMouseDragged
@@ -72,8 +73,9 @@ public class Workspace extends JPanel {
 
     private void formMouseReleased(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_formMouseReleased
         mouseReleased = true;
+        if(pointStart !=pointEnd){
         wires.add(new Wire(pointStart, pointEnd, wireColor));
-
+        }
         repaint();
         pointStart = null;//To change body of generated methods, choose Tools | Templates.
     }//GEN-LAST:event_formMouseReleased

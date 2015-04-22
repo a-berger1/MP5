@@ -36,6 +36,15 @@ public class main extends javax.swing.JFrame {
         }
         initComponents();
         this.setExtendedState(this.MAXIMIZED_BOTH);
+     Gate t = new Transistor();
+        Workspace.add(t);
+        t.setSize(100,100);
+        t.setLocation(300,300);
+        
+                
+        
+     
+ 
      
     }
 
@@ -243,7 +252,7 @@ public class main extends javax.swing.JFrame {
         gatesPanel.setLayout(gatesPanelLayout);
         gatesPanelLayout.setHorizontalGroup(
             gatesPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 107, Short.MAX_VALUE)
+            .addGap(0, 114, Short.MAX_VALUE)
         );
         gatesPanelLayout.setVerticalGroup(
             gatesPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -256,8 +265,8 @@ public class main extends javax.swing.JFrame {
         toolbar.setLayout(toolbarLayout);
         toolbarLayout.setHorizontalGroup(
             toolbarLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addComponent(toolbarLabel, javax.swing.GroupLayout.DEFAULT_SIZE, 117, Short.MAX_VALUE)
-            .addComponent(toolPanel, javax.swing.GroupLayout.PREFERRED_SIZE, 0, Short.MAX_VALUE)
+            .addComponent(toolbarLabel, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+            .addComponent(toolPanel, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
         );
         toolbarLayout.setVerticalGroup(
             toolbarLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
