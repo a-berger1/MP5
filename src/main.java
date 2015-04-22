@@ -146,11 +146,11 @@ public class main extends javax.swing.JFrame {
         toolPanel.setLayout(new java.awt.GridLayout(0, 1));
 
         WirePanel.setBackground(new java.awt.Color(255, 255, 255));
-        WirePanel.setBorder(javax.swing.BorderFactory.createTitledBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(0, 0, 0)), "Wires", javax.swing.border.TitledBorder.CENTER, javax.swing.border.TitledBorder.DEFAULT_POSITION, new java.awt.Font("Consolas", 1, 24))); // NOI18N
+        WirePanel.setBorder(javax.swing.BorderFactory.createTitledBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(0, 0, 0)), "Wires", 2, 0, new java.awt.Font("Consolas", 1, 24))); // NOI18N
         WirePanel.setLayout(new java.awt.GridLayout(0, 1));
 
         WireColorPanel.setBackground(new java.awt.Color(255, 255, 255));
-        WireColorPanel.setBorder(javax.swing.BorderFactory.createTitledBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(0, 0, 0)), "Color", javax.swing.border.TitledBorder.RIGHT, javax.swing.border.TitledBorder.DEFAULT_POSITION, new java.awt.Font("Consolas", 1, 14))); // NOI18N
+        WireColorPanel.setBorder(javax.swing.BorderFactory.createTitledBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(0, 0, 0)), "Color", 3, 0, new java.awt.Font("Consolas", 1, 14))); // NOI18N
         WireColorPanel.setLayout(new java.awt.GridLayout(0, 1, 5, 0));
 
         Black.setBackground(java.awt.Color.white);
@@ -196,7 +196,7 @@ public class main extends javax.swing.JFrame {
         WirePanel.add(WireColorPanel);
 
         removeWiresPanel.setBackground(new java.awt.Color(255, 255, 255));
-        removeWiresPanel.setBorder(javax.swing.BorderFactory.createTitledBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(0, 0, 0)), "Remove", javax.swing.border.TitledBorder.RIGHT, javax.swing.border.TitledBorder.DEFAULT_POSITION, new java.awt.Font("Consolas", 1, 14))); // NOI18N
+        removeWiresPanel.setBorder(javax.swing.BorderFactory.createTitledBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(0, 0, 0)), "Remove", 3, 0, new java.awt.Font("Consolas", 1, 14))); // NOI18N
         removeWiresPanel.setLayout(new java.awt.GridLayout(0, 1));
 
         undoLastWireBtn.setBackground(new java.awt.Color(255, 255, 255));
@@ -246,7 +246,7 @@ public class main extends javax.swing.JFrame {
         toolPanel.add(WirePanel);
 
         gatesPanel.setBackground(java.awt.Color.white);
-        gatesPanel.setBorder(javax.swing.BorderFactory.createTitledBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(0, 0, 0)), "Gates", javax.swing.border.TitledBorder.CENTER, javax.swing.border.TitledBorder.DEFAULT_POSITION, new java.awt.Font("Consolas", 1, 24))); // NOI18N
+        gatesPanel.setBorder(javax.swing.BorderFactory.createTitledBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(0, 0, 0)), "Gates", 2, 0, new java.awt.Font("Consolas", 1, 24))); // NOI18N
 
         javax.swing.GroupLayout gatesPanelLayout = new javax.swing.GroupLayout(gatesPanel);
         gatesPanel.setLayout(gatesPanelLayout);
