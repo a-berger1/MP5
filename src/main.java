@@ -69,6 +69,9 @@ public class main extends javax.swing.JFrame {
         clearCurrentColorBtn = new javax.swing.JButton();
         clearWiresBtn = new javax.swing.JButton();
         gatesPanel = new javax.swing.JPanel();
+        TransistorButton = new javax.swing.JButton();
+        AndButton = new javax.swing.JButton();
+        ORButton = new javax.swing.JButton();
         Sidebar = new javax.swing.JPanel();
         textPanel = new javax.swing.JPanel();
         jScrollPane1 = new javax.swing.JScrollPane();
@@ -137,11 +140,11 @@ public class main extends javax.swing.JFrame {
         toolPanel.setLayout(new java.awt.GridLayout(0, 1));
 
         WirePanel.setBackground(new java.awt.Color(255, 255, 255));
-        WirePanel.setBorder(javax.swing.BorderFactory.createTitledBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(0, 0, 0)), "Wires", 2, 0, new java.awt.Font("Consolas", 1, 24))); // NOI18N
+        WirePanel.setBorder(javax.swing.BorderFactory.createTitledBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(0, 0, 0)), "Wires", javax.swing.border.TitledBorder.CENTER, javax.swing.border.TitledBorder.DEFAULT_POSITION, new java.awt.Font("Consolas", 1, 24))); // NOI18N
         WirePanel.setLayout(new java.awt.GridLayout(0, 1));
 
         WireColorPanel.setBackground(new java.awt.Color(255, 255, 255));
-        WireColorPanel.setBorder(javax.swing.BorderFactory.createTitledBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(0, 0, 0)), "Color", 3, 0, new java.awt.Font("Consolas", 1, 14))); // NOI18N
+        WireColorPanel.setBorder(javax.swing.BorderFactory.createTitledBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(0, 0, 0)), "Color", javax.swing.border.TitledBorder.RIGHT, javax.swing.border.TitledBorder.DEFAULT_POSITION, new java.awt.Font("Consolas", 1, 14))); // NOI18N
         WireColorPanel.setLayout(new java.awt.GridLayout(0, 1, 5, 0));
 
         Black.setBackground(java.awt.Color.white);
@@ -187,7 +190,7 @@ public class main extends javax.swing.JFrame {
         WirePanel.add(WireColorPanel);
 
         removeWiresPanel.setBackground(new java.awt.Color(255, 255, 255));
-        removeWiresPanel.setBorder(javax.swing.BorderFactory.createTitledBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(0, 0, 0)), "Remove", 3, 0, new java.awt.Font("Consolas", 1, 14))); // NOI18N
+        removeWiresPanel.setBorder(javax.swing.BorderFactory.createTitledBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(0, 0, 0)), "Remove", javax.swing.border.TitledBorder.RIGHT, javax.swing.border.TitledBorder.DEFAULT_POSITION, new java.awt.Font("Consolas", 1, 14))); // NOI18N
         removeWiresPanel.setLayout(new java.awt.GridLayout(0, 1));
 
         undoLastWireBtn.setBackground(new java.awt.Color(255, 255, 255));
@@ -219,7 +222,7 @@ public class main extends javax.swing.JFrame {
         removeWiresPanel.add(clearCurrentColorBtn);
 
         clearWiresBtn.setBackground(new java.awt.Color(255, 255, 255));
-        clearWiresBtn.setText("All WIres");
+        clearWiresBtn.setText("All Wires");
         clearWiresBtn.setFocusPainted(false);
         clearWiresBtn.setFocusable(false);
         clearWiresBtn.setHorizontalTextPosition(javax.swing.SwingConstants.CENTER);
@@ -237,18 +240,32 @@ public class main extends javax.swing.JFrame {
         toolPanel.add(WirePanel);
 
         gatesPanel.setBackground(java.awt.Color.white);
-        gatesPanel.setBorder(javax.swing.BorderFactory.createTitledBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(0, 0, 0)), "Gates", 2, 0, new java.awt.Font("Consolas", 1, 24))); // NOI18N
+        gatesPanel.setBorder(javax.swing.BorderFactory.createTitledBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(0, 0, 0)), "Gates", javax.swing.border.TitledBorder.CENTER, javax.swing.border.TitledBorder.DEFAULT_POSITION, new java.awt.Font("Consolas", 1, 24))); // NOI18N
+        gatesPanel.setLayout(new java.awt.GridLayout(0, 1));
 
-        javax.swing.GroupLayout gatesPanelLayout = new javax.swing.GroupLayout(gatesPanel);
-        gatesPanel.setLayout(gatesPanelLayout);
-        gatesPanelLayout.setHorizontalGroup(
-            gatesPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 114, Short.MAX_VALUE)
-        );
-        gatesPanelLayout.setVerticalGroup(
-            gatesPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 232, Short.MAX_VALUE)
-        );
+        TransistorButton.setText("Add Transistor");
+        TransistorButton.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                TransistorButtonActionPerformed(evt);
+            }
+        });
+        gatesPanel.add(TransistorButton);
+
+        AndButton.setText("Add \"And\" Gate");
+        AndButton.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                AndButtonActionPerformed(evt);
+            }
+        });
+        gatesPanel.add(AndButton);
+
+        ORButton.setText("Add \"Or\" Gate");
+        ORButton.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                ORButtonActionPerformed(evt);
+            }
+        });
+        gatesPanel.add(ORButton);
 
         toolPanel.add(gatesPanel);
 
@@ -441,6 +458,27 @@ public class main extends javax.swing.JFrame {
        Workspace.clearCurrentColorWires();
     }//GEN-LAST:event_clearCurrentColorBtnActionPerformed
 
+    private void TransistorButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_TransistorButtonActionPerformed
+       Gate t = new Transistor();
+        Workspace.add(t);
+        t.setSize(100,100);
+        t.setLocation(new Point(t.getParent().getWidth() - 240, t.getParent().getHeight()-200));
+    }//GEN-LAST:event_TransistorButtonActionPerformed
+
+    private void AndButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_AndButtonActionPerformed
+         Gate t = new AndGate();
+        Workspace.add(t);
+        t.setSize(100,100);
+        t.setLocation(new Point(t.getParent().getWidth() - 240, t.getParent().getHeight()-200));
+    }//GEN-LAST:event_AndButtonActionPerformed
+
+    private void ORButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_ORButtonActionPerformed
+       Gate t = new XorGate();
+        Workspace.add(t);
+        t.setSize(100,100);
+        t.setLocation(new Point(t.getParent().getWidth() - 240, t.getParent().getHeight()-200));
+    }//GEN-LAST:event_ORButtonActionPerformed
+
     /**
      * @param args the command line arguments
      */
@@ -481,11 +519,14 @@ public class main extends javax.swing.JFrame {
 
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
+    private javax.swing.JButton AndButton;
     private javax.swing.JRadioButton Black;
     private javax.swing.JRadioButton Gray;
+    private javax.swing.JButton ORButton;
     private javax.swing.JRadioButton Pink;
     private javax.swing.JRadioButton Red;
     private javax.swing.JPanel Sidebar;
+    private javax.swing.JButton TransistorButton;
     private javax.swing.ButtonGroup WireColor;
     private javax.swing.JPanel WireColorPanel;
     private javax.swing.JPanel WirePanel;

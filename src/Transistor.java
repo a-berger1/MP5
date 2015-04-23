@@ -1,8 +1,6 @@
 
-import java.awt.BasicStroke;
 import java.awt.Color;
 import java.awt.Graphics;
-import java.awt.Graphics2D;
 
 
 
@@ -84,7 +82,6 @@ public class Transistor extends Gate {
         @Override
     public void paint(Graphics g1) {
         super.paint(g1);
-        g1.setColor(Color.RED);
         g1.drawLine(50, 0, 50, 25);
         g1.drawLine(50,25,25,50);
         g1.drawLine(25,50,50,75);

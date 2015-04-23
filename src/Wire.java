@@ -29,6 +29,7 @@ public class Wire extends Line2D.Double {
     public Color getColor() {
         return color;
     }
+
     public void setColor(Color c) {
         color = c;
     }

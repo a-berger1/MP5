@@ -6,12 +6,11 @@
 
 import java.awt.BasicStroke;
 import java.awt.Color;
-import java.awt.Component;
+import java.awt.Container;
 import java.awt.Dimension;
 import java.awt.Graphics;
 import java.awt.Graphics2D;
 import java.awt.Point;
-import java.awt.Stroke;
 import java.awt.event.MouseAdapter;
 import java.awt.event.MouseEvent;
 import javax.swing.JLabel;
@@ -38,6 +37,9 @@ public abstract class Gate extends JLabel {
             public void mousePressed(MouseEvent e) {
                 dx = e.getXOnScreen() - getX();
                 dy = e.getYOnScreen() - getY();
+                if (e.isMetaDown()) {
+                    removeGate();
+                }
             }
 
             @Override
@@ -80,9 +82,17 @@ public abstract class Gate extends JLabel {
         super.paint(g1);
         Graphics2D g = (Graphics2D) g1;
         g.setStroke(new BasicStroke(10));
+        g.setColor(Color.RED);
 
     }
 
     public abstract boolean isConnected();
+
+    public void removeGate() {
+        Container parent = this.getParent();
+        parent.remove(this);
+        parent.revalidate();
+        parent.repaint();
+    }
 
 }

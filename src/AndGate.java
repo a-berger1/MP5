@@ -1,28 +1,30 @@
+
+import java.awt.Graphics;
+
 /*
  * To change this license header, choose License Headers in Project Properties.
  * To change this template file, choose Tools | Templates
  * and open the template in the editor.
  */
-
-
 /**
  *
  * @author Noah
  */
 public class AndGate extends Gate {
 
-    public boolean input1;
-    public boolean input2;
-    public boolean output;
-    public boolean source;
-    public boolean grounded;
+    private boolean input1;
+    private boolean input2;
+    private boolean output;
+    private boolean source;
+    private boolean grounded;
 
     public AndGate() {
-        
+
     }
 
+    @Override
     public boolean isConnected() {
-       if (source && grounded && output && input1 && input2) {
+        if (source && grounded && output && input1 && input2) {
             return true;
         }
         return false;
@@ -53,5 +55,16 @@ public class AndGate extends Gate {
         return grounded;
     }
 
- 
+    @Override
+    public void paint(Graphics g1) {
+        super.paint(g1);
+        g1.drawLine(25, 0, 25, 20);
+        g1.drawLine(75, 0, 75, 20);
+        g1.drawLine(15, 20, 85, 20);
+        g1.drawLine(15, 60, 15, 20);
+        g1.drawLine(85, 60, 85, 20);
+        g1.drawArc(15,25,70,70,180,180);
+
+    }
+
 }
