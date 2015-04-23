@@ -10,6 +10,7 @@ import java.awt.Component;
 import java.awt.Dimension;
 import java.awt.Graphics;
 import java.awt.Graphics2D;
+import java.awt.Point;
 import java.awt.Stroke;
 import java.awt.event.MouseAdapter;
 import java.awt.event.MouseEvent;
@@ -33,13 +34,34 @@ public abstract class Gate extends JLabel {
 
     public Gate() {
         this.adapter = new MouseAdapter() {
+            @Override
             public void mousePressed(MouseEvent e) {
                 dx = e.getXOnScreen() - getX();
                 dy = e.getYOnScreen() - getY();
             }
 
+            @Override
             public void mouseDragged(MouseEvent e) {
+
                 setLocation(e.getXOnScreen() - dx, e.getYOnScreen() - dy);
+                if (getLocation().x <= 0) {
+                    setLocation(new Point(0, getLocation().y));
+                }
+                if (getLocation().y <= 50) {
+                    setLocation(new Point(getLocation().x, 50));
+                }
+                if (getLocation().y <= 50) {
+                    setLocation(new Point(getLocation().x, 50));
+                }
+                if (getLocation().x >= getParent().getWidth() - 250) {
+                    setLocation(new Point(getParent().getWidth() - 240, getY()));
+                }
+                if (getLocation().y >= getParent().getHeight() - 150) {
+                    setLocation(new Point(getX(), getParent().getHeight() - 150));
+                }
+                if (getLocation().y >= getParent().getHeight() - 150) {
+                    setLocation(new Point(getX(), getParent().getHeight() - 150));
+                }
             }
 
         };
@@ -52,10 +74,13 @@ public abstract class Gate extends JLabel {
 
     }
 
-    public void paint(Graphics2D g) {
-        g.setColor(Color.RED);
-        g.drawLine(50, 3, 50, 20);
-        paintBorder(g);
+    @Override
+    public void paint(Graphics g1) {
+
+        super.paint(g1);
+        Graphics2D g = (Graphics2D) g1;
+        g.setStroke(new BasicStroke(10));
+
     }
 
     public abstract boolean isConnected();

@@ -23,7 +23,7 @@ public class Workspace extends JPanel {
 
     Point pointStart;
     Point pointEnd;
-    ArrayList<Wire> wires = new ArrayList<Wire>();
+    ArrayList<Wire> wires;
     boolean mouseReleased = false;
     boolean undoWire = false;
     Color wireColor = Color.BLACK;
@@ -33,7 +33,12 @@ public class Workspace extends JPanel {
      * Creates new form Workspace1
      */
     public Workspace() {
+        this.wires = new ArrayList<>();
         initComponents();
+            Gate t = new Transistor();
+        add(t);
+        t.setSize(100,100);
+        t.setLocation(300,300);
 
     }
 
@@ -89,6 +94,7 @@ public class Workspace extends JPanel {
         repaint();
     }
 
+    @Override
     public void paint(Graphics g) {
         super.paint(g);
         Graphics2D g2 = (Graphics2D) g;
@@ -100,11 +106,10 @@ public class Workspace extends JPanel {
 
         }
         //Only runs if the mouse was just released or if the undoLastWireBtn is pressed. Keeps wires drawn on the screen
-
-        for (int i = 0; i < wires.size(); i++) {
-            g.setColor(wires.get(i).getColor());
+        for (Wire wire : wires) {
+            g.setColor(wire.getColor());
             g2.setStroke(new BasicStroke(10));
-            g2.draw(wires.get(i));
+            g2.draw(wire);
         }
         mouseReleased = false;
         undoWire = false;

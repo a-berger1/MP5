@@ -25,21 +25,12 @@ public class main extends javax.swing.JFrame {
     public main() {
         try {
             UIManager.setLookAndFeel(UIManager.getSystemLookAndFeelClassName());
-        } catch (ClassNotFoundException ex) {
-            Logger.getLogger(main.class.getName()).log(Level.SEVERE, null, ex);
-        } catch (InstantiationException ex) {
-            Logger.getLogger(main.class.getName()).log(Level.SEVERE, null, ex);
-        } catch (IllegalAccessException ex) {
-            Logger.getLogger(main.class.getName()).log(Level.SEVERE, null, ex);
-        } catch (UnsupportedLookAndFeelException ex) {
+        } catch (ClassNotFoundException | InstantiationException | IllegalAccessException | UnsupportedLookAndFeelException ex) {
             Logger.getLogger(main.class.getName()).log(Level.SEVERE, null, ex);
         }
         initComponents();
-        this.setExtendedState(this.MAXIMIZED_BOTH);
-     Gate t = new Transistor();
-        Workspace.add(t);
-        t.setSize(100,100);
-        t.setLocation(300,300);
+        this.setExtendedState(main.MAXIMIZED_BOTH);
+ 
         
                 
         

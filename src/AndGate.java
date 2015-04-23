@@ -22,7 +22,9 @@ public class AndGate extends Gate {
     }
 
     public boolean isConnected() {
-       //checks to see if there is a wire in close proximity
+       if (source && grounded && output && input1 && input2) {
+            return true;
+        }
         return false;
     }
 
@@ -51,10 +53,5 @@ public class AndGate extends Gate {
         return grounded;
     }
 
-    public boolean currentGoesThrough() {
-        if (source && grounded && output && input1 && input2) {
-            return true;
-        }
-        return false;
-    }
+ 
 }
