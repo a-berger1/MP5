@@ -16,8 +16,7 @@ import java.awt.*;
  */
 public class main extends javax.swing.JFrame {
 
-   
-    
+    boolean isLocked = false;
 
     /**
      * Creates new form main
@@ -29,14 +28,9 @@ public class main extends javax.swing.JFrame {
             Logger.getLogger(main.class.getName()).log(Level.SEVERE, null, ex);
         }
         initComponents();
+
         this.setExtendedState(main.MAXIMIZED_BOTH);
- 
-        
-                
-        
-     
- 
-     
+
     }
 
     /**
@@ -69,6 +63,8 @@ public class main extends javax.swing.JFrame {
         clearCurrentColorBtn = new javax.swing.JButton();
         clearWiresBtn = new javax.swing.JButton();
         gatesPanel = new javax.swing.JPanel();
+        LockPanel = new javax.swing.JPanel();
+        lockBtn = new javax.swing.JButton();
         TransistorButton = new javax.swing.JButton();
         AndButton = new javax.swing.JButton();
         ORButton = new javax.swing.JButton();
@@ -120,7 +116,7 @@ public class main extends javax.swing.JFrame {
             sourcePanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, sourcePanelLayout.createSequentialGroup()
                 .addContainerGap()
-                .addComponent(sourceLabel, javax.swing.GroupLayout.DEFAULT_SIZE, 1005, Short.MAX_VALUE)
+                .addComponent(sourceLabel, javax.swing.GroupLayout.DEFAULT_SIZE, 1000, Short.MAX_VALUE)
                 .addContainerGap())
         );
         sourcePanelLayout.setVerticalGroup(
@@ -243,6 +239,19 @@ public class main extends javax.swing.JFrame {
         gatesPanel.setBorder(javax.swing.BorderFactory.createTitledBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(0, 0, 0)), "Gates", javax.swing.border.TitledBorder.CENTER, javax.swing.border.TitledBorder.DEFAULT_POSITION, new java.awt.Font("Consolas", 1, 24))); // NOI18N
         gatesPanel.setLayout(new java.awt.GridLayout(0, 1));
 
+        LockPanel.setBorder(javax.swing.BorderFactory.createTitledBorder(new javax.swing.border.MatteBorder(null), "Lock"));
+        LockPanel.setLayout(new java.awt.GridLayout());
+
+        lockBtn.setText("Lock Gates");
+        lockBtn.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                lockBtnActionPerformed(evt);
+            }
+        });
+        LockPanel.add(lockBtn);
+
+        gatesPanel.add(LockPanel);
+
         TransistorButton.setText("Add Transistor");
         TransistorButton.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -355,7 +364,7 @@ public class main extends javax.swing.JFrame {
             textPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(textPanelLayout.createSequentialGroup()
                 .addGap(0, 0, 0)
-                .addComponent(jScrollPane1, javax.swing.GroupLayout.DEFAULT_SIZE, 175, Short.MAX_VALUE))
+                .addComponent(jScrollPane1, javax.swing.GroupLayout.DEFAULT_SIZE, 180, Short.MAX_VALUE))
         );
         textPanelLayout.setVerticalGroup(
             textPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -381,7 +390,7 @@ public class main extends javax.swing.JFrame {
         navBox.setLayout(navBoxLayout);
         navBoxLayout.setHorizontalGroup(
             navBoxLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 175, Short.MAX_VALUE)
+            .addGap(0, 180, Short.MAX_VALUE)
         );
         navBoxLayout.setVerticalGroup(
             navBoxLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -455,29 +464,49 @@ public class main extends javax.swing.JFrame {
     }//GEN-LAST:event_PinkActionPerformed
 
     private void clearCurrentColorBtnActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_clearCurrentColorBtnActionPerformed
-       Workspace.clearCurrentColorWires();
+        Workspace.clearCurrentColorWires();
     }//GEN-LAST:event_clearCurrentColorBtnActionPerformed
 
     private void TransistorButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_TransistorButtonActionPerformed
-       Gate t = new Transistor();
+        Gate t = new Transistor();
         Workspace.add(t);
-        t.setSize(100,100);
-        t.setLocation(new Point(t.getParent().getWidth() - 240, t.getParent().getHeight()-200));
+        t.setSize(100, 100);
+        t.setLocation(new Point(t.getParent().getWidth() - 240, t.getParent().getHeight() - 200));
+        Workspace.gates.add(t);
+        t.addNodes();
     }//GEN-LAST:event_TransistorButtonActionPerformed
 
     private void AndButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_AndButtonActionPerformed
-         Gate t = new AndGate();
+        Gate t = new AndGate();
         Workspace.add(t);
-        t.setSize(100,100);
-        t.setLocation(new Point(t.getParent().getWidth() - 240, t.getParent().getHeight()-200));
+        t.setSize(100, 100);
+        t.setLocation(new Point(t.getParent().getWidth() - 240, t.getParent().getHeight() - 200));
+        Workspace.gates.add(t);
+        t.addNodes();
     }//GEN-LAST:event_AndButtonActionPerformed
 
     private void ORButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_ORButtonActionPerformed
-       Gate t = new XorGate();
+        Gate t = new OrGate();
         Workspace.add(t);
-        t.setSize(100,100);
-        t.setLocation(new Point(t.getParent().getWidth() - 240, t.getParent().getHeight()-200));
+        t.setSize(100, 100);
+        t.setLocation(new Point(t.getParent().getWidth() - 240, t.getParent().getHeight() - 200));
+        Workspace.gates.add(t);
+        t.addNodes();
     }//GEN-LAST:event_ORButtonActionPerformed
+
+    private void lockBtnActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_lockBtnActionPerformed
+
+        if (isLocked) {
+            lockBtn.setText("Lock Gates");
+            Workspace.lockGates = false;
+            isLocked = false;
+        }
+        else if (!isLocked) {
+            lockBtn.setText("Unlock Gates");
+            Workspace.lockGates = true;
+            isLocked = true;
+        }
+    }//GEN-LAST:event_lockBtnActionPerformed
 
     /**
      * @param args the command line arguments
@@ -514,14 +543,12 @@ public class main extends javax.swing.JFrame {
         });
     }
 
-    
-   
-
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton AndButton;
     private javax.swing.JRadioButton Black;
     private javax.swing.JRadioButton Gray;
+    private javax.swing.JPanel LockPanel;
     private javax.swing.JButton ORButton;
     private javax.swing.JRadioButton Pink;
     private javax.swing.JRadioButton Red;
@@ -538,6 +565,7 @@ public class main extends javax.swing.JFrame {
     private javax.swing.JPanel groundPanel;
     private javax.swing.JScrollPane jScrollPane1;
     private javax.swing.JTextArea jTextArea1;
+    private javax.swing.JButton lockBtn;
     private javax.swing.JPanel navBox;
     private javax.swing.JPanel removeWiresPanel;
     private javax.swing.JLabel sourceLabel;

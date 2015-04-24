@@ -68,6 +68,7 @@ public abstract class Gate extends JLabel {
                 if (getLocation().y >= getParent().getHeight() - 150) {
                     setLocation(new Point(getX(), getParent().getHeight() - 150));
                 }
+                updateNodes();
             }
 
         };
@@ -77,6 +78,8 @@ public abstract class Gate extends JLabel {
         setPreferredSize(gateDim);
         addMouseListener(adapter);
         addMouseMotionListener(adapter);
+        
+        
 
     }
 
@@ -94,6 +97,13 @@ public abstract class Gate extends JLabel {
 
     public void addNodes() {
 
+    }
+    
+    public void updateNodes() {
+        while(this.nodes.size() > 0) {
+            this.nodes.remove(0);
+        }
+        this.addNodes();
     }
 
     public void removeGate() {

@@ -47,6 +47,10 @@ public class Wire extends Line2D.Double {
                     x2 = node.getX();
                     y2 = node.getY();
                 }
+                else if ((node.getX() - x1) * (node.getX() - x1) + (node.getY() - y1) * (node.getY() - y1) <= 625) {
+                    x1 = node.getX();
+                    y1 = node.getY();
+                }
             }
 
         }

@@ -27,8 +27,8 @@ public class Workspace extends JPanel {
     public ArrayList<Wire> wires;
     public boolean undoWire = false;
     public Color wireColor = Color.BLACK;
-    private MouseAdapter adapter;
-    private boolean deleteWire;
+   public boolean lockGates = false;
+    
     public ArrayList<Gate> gates;
 
     /**

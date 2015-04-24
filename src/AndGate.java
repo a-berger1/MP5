@@ -1,5 +1,6 @@
 
 import java.awt.Graphics;
+import java.awt.geom.Point2D;
 
 /*
  * To change this license header, choose License Headers in Project Properties.
@@ -21,6 +22,12 @@ public class AndGate extends Gate {
     public AndGate() {
 
     }
+    @Override
+    public void addNodes() {
+        nodes.add(new Point2D.Double(this.getX()+75, this.getY()));
+        nodes.add(new Point2D.Double(this.getX()+25, this.getY()));
+        nodes.add(new Point2D.Double(this.getX()+50, this.getY()+100));
+    }
 
     @Override
     public boolean isConnected() {
@@ -28,31 +35,6 @@ public class AndGate extends Gate {
             return true;
         }
         return false;
-    }
-
-    public boolean setInput1() {
-        input1 ^= true;
-        return input1;
-    }
-
-    public boolean setInput2() {
-        input2 ^= true;
-        return input2;
-    }
-
-    public boolean setOutput() {
-        output ^= true;
-        return output;
-    }
-
-    public boolean setSource() {
-        source ^= true;
-        return source;
-    }
-
-    public boolean setGrounded() {
-        grounded ^= true;
-        return grounded;
     }
 
     @Override

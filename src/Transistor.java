@@ -21,7 +21,9 @@ public class Transistor extends Gate {
     
     @Override
     public void addNodes() {
-        nodes.add(new Point2D.Double(this.getX(), this.getY()));
+        nodes.add(new Point2D.Double(this.getX(), this.getY()+50));
+        nodes.add(new Point2D.Double(this.getX()+50, this.getY()));
+        nodes.add(new Point2D.Double(this.getX()+50, this.getY()+100));
     }
     
     @Override
