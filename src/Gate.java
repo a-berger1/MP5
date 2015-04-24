@@ -13,6 +13,8 @@ import java.awt.Graphics2D;
 import java.awt.Point;
 import java.awt.event.MouseAdapter;
 import java.awt.event.MouseEvent;
+import java.awt.geom.Point2D;
+import java.util.ArrayList;
 import javax.swing.JLabel;
 import javax.swing.border.MatteBorder;
 
@@ -28,10 +30,12 @@ public abstract class Gate extends JLabel {
     public boolean source;
     public boolean grounded;
     public Dimension gateDim = new Dimension(100, 100);
+    public ArrayList<Point2D.Double> nodes;
     MouseAdapter adapter;
     int dx, dy;
 
     public Gate() {
+        this.nodes = new ArrayList<>();
         this.adapter = new MouseAdapter() {
             @Override
             public void mousePressed(MouseEvent e) {
@@ -87,6 +91,10 @@ public abstract class Gate extends JLabel {
     }
 
     public abstract boolean isConnected();
+
+    public void addNodes() {
+
+    }
 
     public void removeGate() {
         Container parent = this.getParent();

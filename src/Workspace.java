@@ -29,17 +29,22 @@ public class Workspace extends JPanel {
     public Color wireColor = Color.BLACK;
     private MouseAdapter adapter;
     private boolean deleteWire;
+    public ArrayList<Gate> gates;
 
     /**
      * Creates new form Workspace1
      */
     public Workspace() {
         this.wires = new ArrayList<>();
+        this.gates = new ArrayList<>();
         initComponents();
         Gate t = new Transistor();
         add(t);
         t.setSize(100, 100);
         t.setLocation(300, 300);
+        t.addNodes();
+
+        gates.add(t);
 
     }
 
@@ -71,20 +76,24 @@ public class Workspace extends JPanel {
         pointStart = evt.getPoint();
         pointEnd = pointStart;
 
-        
+
     }//GEN-LAST:event_formMousePressed
 
     private void formMouseDragged(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_formMouseDragged
-     
-            pointEnd = evt.getPoint();
-            repaint();
-        
+
+        pointEnd = evt.getPoint();
+        repaint();
+
     }//GEN-LAST:event_formMouseDragged
 
     private void formMouseReleased(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_formMouseReleased
 
         if (pointStart != pointEnd) {
-            wires.add(new Wire(pointStart, pointEnd, wireColor));
+            Wire temp = new Wire(pointStart, pointEnd, wireColor, gates);
+            temp.snapWire(gates);
+            wires.add(temp);
+            repaint();
+
         }
         repaint();
 

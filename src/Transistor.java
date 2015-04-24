@@ -1,7 +1,7 @@
 
-import java.awt.Color;
 import java.awt.Graphics;
-
+import java.awt.Point;
+import java.awt.geom.Point2D;
 
 
 /*
@@ -14,79 +14,29 @@ import java.awt.Graphics;
  * @author Noah
  */
 public class Transistor extends Gate {
-
-    public boolean input;
-    public boolean output;
-    public boolean source;
-    public boolean grounded;
-
+    
     public Transistor() {
+        
     }
-
-
-    public boolean isInput() {
-        return input;
+    
+    @Override
+    public void addNodes() {
+        nodes.add(new Point2D.Double(this.getX(), this.getY()));
     }
-
-    public void setInput(boolean input) {
-        this.input = input;
-    }
-
-    public boolean isOutput() {
-        return output;
-    }
-
-    public void setOutput(boolean output) {
-        this.output = output;
-    }
-
-    public boolean isSource() {
-        return source;
-    }
-
-    public void setSource(boolean source) {
-        this.source = source;
-    }
-
-    public boolean isGrounded() {
-        return grounded;
-    }
-
-    public void setGrounded(boolean grounded) {
-        this.grounded = grounded;
-    }
-
-    public void setInput() {
-        input ^= true;
-    }
-
-    public void setOutput() {
-        output ^= true;
-    }
-
-    public void setSource() {
-        source ^= true;
-    }
-
-    public void setGrounded() {
-        grounded ^= true;
-    }
-
+    
     @Override
     public boolean isConnected() {
         return false;
     }
     
-   
-
-        @Override
+    @Override
     public void paint(Graphics g1) {
         super.paint(g1);
         g1.drawLine(50, 0, 50, 25);
-        g1.drawLine(50,25,25,50);
-        g1.drawLine(25,50,50,75);
-        g1.drawLine(50,75,50,100);
-        g1.drawLine(0,50,25,50);
+        g1.drawLine(50, 25, 25, 50);
+        g1.drawLine(25, 50, 50, 75);
+        g1.drawLine(50, 75, 50, 100);
+        g1.drawLine(0, 50, 25, 50);
         
     }
 }
