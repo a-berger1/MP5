@@ -9,8 +9,6 @@ import java.awt.Point;
 import java.awt.Color;
 import java.awt.geom.Point2D;
 import java.util.ArrayList;
-import java.util.HashSet;
-import java.util.Set;
 
 /**
  *

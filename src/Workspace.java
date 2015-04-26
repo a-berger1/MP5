@@ -4,12 +4,8 @@ import java.awt.Color;
 import java.awt.Graphics;
 import java.awt.Graphics2D;
 import java.awt.Point;
-import java.awt.event.MouseAdapter;
-import java.awt.event.MouseEvent;
-import java.awt.geom.Point2D;
 import java.util.ArrayList;
 import javax.swing.JPanel;
-import javax.swing.SwingUtilities;
 
 /*
  * To change this license header, choose License Headers in Project Properties.

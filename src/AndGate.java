@@ -13,11 +13,7 @@ import java.awt.geom.Point2D;
  */
 public class AndGate extends Gate {
 
-    private boolean input1;
-    private boolean input2;
-    private boolean output;
-    private boolean source;
-    private boolean grounded;
+    
 
     public AndGate() {
 
@@ -31,10 +27,7 @@ public class AndGate extends Gate {
 
     @Override
     public boolean isConnected() {
-        if (source && grounded && output && input1 && input2) {
-            return true;
-        }
-        return false;
+        return source && grounded && output && input1 && input2;
     }
 
     @Override
