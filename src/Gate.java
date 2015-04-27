@@ -52,6 +52,9 @@ public abstract class Gate extends JLabel {
         Graphics2D g = (Graphics2D) g1;
         g.setStroke(new BasicStroke(10));
         g.setColor(Color.BLACK);
+        if(isConnected()) {
+            g.setColor(Color.GREEN);
+        }
 
     }
 
