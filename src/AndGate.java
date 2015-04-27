@@ -1,4 +1,5 @@
 
+import java.awt.Color;
 import java.awt.Graphics;
 import java.awt.geom.Point2D;
 
@@ -27,8 +28,9 @@ public class AndGate extends Gate {
 
     @Override
     public boolean isConnected() {
-        if(input1 && input2 && output)
+        if(input1 && input2 && output){
             return true;
+        }
         return false;
     }
 
