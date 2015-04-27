@@ -19,9 +19,10 @@ public class halfAdder extends Gate {
 
     @Override
     public void addNodes() {
-        nodes.add(new Point2D.Double(this.getX() + 75, this.getY()));
         nodes.add(new Point2D.Double(this.getX() + 25, this.getY()));
-        nodes.add(new Point2D.Double(this.getX() + 50, this.getY() + 100));
+        nodes.add(new Point2D.Double(this.getX() + 75, this.getY()));
+        nodes.add(new Point2D.Double(this.getX(), this.getY() + 50));
+        nodes.add(new Point2D.Double(this.getX()+50, this.getY() + 100));
     }
 
     @Override
