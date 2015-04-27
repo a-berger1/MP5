@@ -14,7 +14,7 @@ import java.util.ArrayList;
  *
  * @author andy
  */
-public class Wire extends Line2D.Double {
+public final class Wire extends Line2D.Double {
 
     private Color color;
 
@@ -36,6 +36,8 @@ public class Wire extends Line2D.Double {
     public void setColor(Color c) {
         color = c;
     }
+    
+    public void drawWire(){}
 
     public void snapWire(ArrayList<Gate> gates) {
 

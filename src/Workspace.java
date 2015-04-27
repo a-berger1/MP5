@@ -4,6 +4,7 @@ import java.awt.Color;
 import java.awt.Graphics;
 import java.awt.Graphics2D;
 import java.awt.Point;
+import java.awt.geom.Point2D;
 import java.util.ArrayList;
 import javax.swing.JPanel;
 
@@ -23,9 +24,11 @@ public class Workspace extends JPanel {
     public ArrayList<Wire> wires;
     public boolean undoWire = false;
     public Color wireColor = Color.BLACK;
-   public boolean lockGates = false;
-    
+    public boolean lockGates = false;
+    private boolean dragGate = false;
+    int dx, dy;
     public ArrayList<Gate> gates;
+    Gate current;
 
     /**
      * Creates new form Workspace1
@@ -69,28 +72,100 @@ public class Workspace extends JPanel {
     }// </editor-fold>//GEN-END:initComponents
 
     private void formMousePressed(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_formMousePressed
-        pointStart = evt.getPoint();
-        pointEnd = pointStart;
+        boolean inGate = false;
+        boolean inNodeZone = false;
+
+        for (Gate gate : gates) {
+            if (gate.getBounds().contains(evt.getLocationOnScreen())) {
+                inGate = true;
+                current = gate;
+                if (evt.isMetaDown()) {
+                    gate.removeGate();
+                }
+            }
+
+        }
+
+        for (Point2D.Double node : current.nodes) {
+            if (node.distance(evt.getLocationOnScreen()) < 25) {
+                inNodeZone = true;
+            }
+        }
+        if (inGate && !inNodeZone) {
+            dragGate = true;
+            dx = evt.getXOnScreen() - current.getX();
+            dy = evt.getYOnScreen() - current.getY();
+
+        }
+        if (inNodeZone) {
+            pointStart = evt.getPoint();
+            pointEnd = pointStart;
+        }
 
 
     }//GEN-LAST:event_formMousePressed
 
     private void formMouseDragged(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_formMouseDragged
 
-        pointEnd = evt.getPoint();
-        repaint();
+        if (dragGate) {
+            for (Point2D.Double node : current.nodes) {
+                if (node.distance(evt.getLocationOnScreen()) > 25) {
+                    current.setLocation(evt.getXOnScreen() - dx, evt.getYOnScreen() - dy);
+                    if (current.getLocation().x <= 0) {
+                        current.setLocation(new Point(0, current.getLocation().y));
 
+                    }
+                    if (current.getLocation().y <= 50) {
+                        current.setLocation(new Point(current.getLocation().x, 50));
+
+                    }
+                    if (current.getLocation().y <= 50) {
+                        current.setLocation(new Point(current.getLocation().x, 50));
+
+                    }
+                    if (current.getLocation().x >= current.getParent().getWidth() - 250) {
+                        current.setLocation(new Point(current.getParent().getWidth() - 240, current.getY()));
+
+                    }
+                    if (current.getLocation().y >= current.getParent().getHeight() - 150) {
+                        current.setLocation(new Point(current.getX(), current.getParent().getHeight() - 150));
+
+                    }
+                    if (current.getLocation().y >= current.getParent().getHeight() - 150) {
+                        current.setLocation(new Point(current.getX(), current.getParent().getHeight() - 150));
+
+                    }
+                    current.updateNodes();
+                }
+            }
+        }
+        for (Point2D.Double node : current.nodes) {
+            if (node.distance(evt.getLocationOnScreen()) <= 25) {
+                pointEnd = evt.getPoint();
+
+            }
+
+        }
+
+        repaint();
     }//GEN-LAST:event_formMouseDragged
 
     private void formMouseReleased(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_formMouseReleased
-
+        dragGate = false;
         if (pointStart != pointEnd) {
-            Wire temp = new Wire(pointStart, pointEnd, wireColor, gates);
-            temp.snapWire(gates);
-            wires.add(temp);
-            repaint();
+            for (Gate gate : gates) {
 
+                for (Point2D.Double node : gate.nodes) {
+                    if (node.distance(evt.getLocationOnScreen()) <= 25) {
+                        Wire temp = new Wire(pointStart, pointEnd, wireColor, gates);
+                        temp.snapWire(gates);
+                        wires.add(temp);
+                        repaint();
+                    }
+                }
+            }
         }
+
         repaint();
 
         pointStart = null;

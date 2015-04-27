@@ -36,50 +36,50 @@ public abstract class Gate extends JLabel {
 
     public Gate() {
         this.nodes = new ArrayList<>();
-        this.adapter = new MouseAdapter() {
-            @Override
-            public void mousePressed(MouseEvent e) {
-                dx = e.getXOnScreen() - getX();
-                dy = e.getYOnScreen() - getY();
-                if (e.isMetaDown()) {
-                    removeGate();
-                }
-            }
-
-            @Override
-            public void mouseDragged(MouseEvent e) {
-
-                setLocation(e.getXOnScreen() - dx, e.getYOnScreen() - dy);
-                if (getLocation().x <= 0) {
-                    setLocation(new Point(0, getLocation().y));
-                }
-                if (getLocation().y <= 50) {
-                    setLocation(new Point(getLocation().x, 50));
-                }
-                if (getLocation().y <= 50) {
-                    setLocation(new Point(getLocation().x, 50));
-                }
-                if (getLocation().x >= getParent().getWidth() - 250) {
-                    setLocation(new Point(getParent().getWidth() - 240, getY()));
-                }
-                if (getLocation().y >= getParent().getHeight() - 150) {
-                    setLocation(new Point(getX(), getParent().getHeight() - 150));
-                }
-                if (getLocation().y >= getParent().getHeight() - 150) {
-                    setLocation(new Point(getX(), getParent().getHeight() - 150));
-                }
-                updateNodes();
-            }
-
-        };
+//        this.adapter = new MouseAdapter() {
+//            @Override
+//            public void mousePressed(MouseEvent e) {
+//
+//                dx = e.getXOnScreen() - getX();
+//                dy = e.getYOnScreen() - getY();
+//                if (e.isMetaDown()) {
+//                    removeGate();
+//                }
+//            }
+//
+//            @Override
+//
+//            public void mouseDragged(MouseEvent e) {
+//
+//                setLocation(e.getXOnScreen() - dx, e.getYOnScreen() - dy);
+//                if (getLocation().x <= 0) {
+//                    setLocation(new Point(0, getLocation().y));
+//                }
+//                if (getLocation().y <= 50) {
+//                    setLocation(new Point(getLocation().x, 50));
+//                }
+//                if (getLocation().y <= 50) {
+//                    setLocation(new Point(getLocation().x, 50));
+//                }
+//                if (getLocation().x >= getParent().getWidth() - 250) {
+//                    setLocation(new Point(getParent().getWidth() - 240, getY()));
+//                }
+//                if (getLocation().y >= getParent().getHeight() - 150) {
+//                    setLocation(new Point(getX(), getParent().getHeight() - 150));
+//                }
+//                if (getLocation().y >= getParent().getHeight() - 150) {
+//                    setLocation(new Point(getX(), getParent().getHeight() - 150));
+//                }
+//                updateNodes();
+//            }
+//
+//        };
         setBorder(new MatteBorder(1, 1, 1, 1, Color.BLACK));
         setMaximumSize(gateDim);
         setMinimumSize(gateDim);
         setPreferredSize(gateDim);
-        addMouseListener(adapter);
-        addMouseMotionListener(adapter);
-        
-        
+       // addMouseListener(adapter);
+     //   addMouseMotionListener(adapter);
 
     }
 
@@ -98,9 +98,9 @@ public abstract class Gate extends JLabel {
     public void addNodes() {
 
     }
-    
+
     public void updateNodes() {
-        while(this.nodes.size() > 0) {
+        while (this.nodes.size() > 0) {
             this.nodes.remove(0);
         }
         this.addNodes();
