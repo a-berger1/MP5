@@ -31,6 +31,7 @@ public abstract class Gate extends JLabel {
     public Dimension gateDim = new Dimension(100, 100);
     public ArrayList<Point2D.Double> nodes;
 
+    
     int dx, dy;
 
     public Gate() {
