@@ -31,11 +31,11 @@ public class Workspace extends JPanel {
     public ArrayList<Gate> gates;
     Gate current;
     public int currentNumAndGates;
-    public int maxAndGates;
+    public int maxAndGates = 10;
     public int currentNumOrGates;
-    public int maxOrGates;
+    public int maxOrGates = 10;
     public int currentNumTransistors;
-    public int maxTransistors;
+    public int maxTransistors = 10;
 
     /**
      * Creates new form Workspace1
