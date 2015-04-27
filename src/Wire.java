@@ -43,11 +43,11 @@ public final class Wire extends Line2D.Double {
 
         for (Gate g : gates) {
             for (Point2D.Double node : g.nodes) {
-                if ((node.getX() - x2) * (node.getX() - x2) + (node.getY() - y2) * (node.getY() - y2) <= 625) {
+                if ((node.getX() - x2) * (node.getX() - x2) + (node.getY() - y2) * (node.getY() - y2) <= 625 ) {
                     x2 = node.getX();
                     y2 = node.getY();
                 }
-                else if ((node.getX() - x1) * (node.getX() - x1) + (node.getY() - y1) * (node.getY() - y1) <= 625) {
+                 if ((node.getX() - x1) * (node.getX() - x1) + (node.getY() - y1) * (node.getY() - y1) <= 625) {
                     x1 = node.getX();
                     y1 = node.getY();
                 }

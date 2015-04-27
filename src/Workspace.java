@@ -24,8 +24,9 @@ public class Workspace extends JPanel {
     public ArrayList<Wire> wires;
     public boolean undoWire = false;
     public Color wireColor = Color.BLACK;
-    public boolean lockGates = false;
+    private boolean lockGates = false;
     private boolean dragGate = false;
+    private boolean isDrawingWire;
     int dx, dy;
     public ArrayList<Gate> gates;
     Gate current;
@@ -77,8 +78,10 @@ public class Workspace extends JPanel {
 
         for (Gate gate : gates) {
             if (gate.getBounds().contains(evt.getLocationOnScreen())) {
+
                 inGate = true;
                 current = gate;
+                //Right click to remove the gate
                 if (evt.isMetaDown()) {
                     gate.removeGate();
                 }
@@ -87,9 +90,10 @@ public class Workspace extends JPanel {
         }
 
         for (Point2D.Double node : current.nodes) {
-            if (node.distance(evt.getLocationOnScreen()) < 25) {
+            if (node.distance(evt.getLocationOnScreen()) < 20) {
                 inNodeZone = true;
             }
+
         }
         if (inGate && !inNodeZone) {
             dragGate = true;
@@ -97,7 +101,7 @@ public class Workspace extends JPanel {
             dy = evt.getYOnScreen() - current.getY();
 
         }
-        if (inNodeZone) {
+        if (inNodeZone && lockGates) {
             pointStart = evt.getPoint();
             pointEnd = pointStart;
         }
@@ -107,7 +111,7 @@ public class Workspace extends JPanel {
 
     private void formMouseDragged(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_formMouseDragged
 
-        if (dragGate) {
+        if (dragGate && !lockGates) {
             for (Point2D.Double node : current.nodes) {
                 if (node.distance(evt.getLocationOnScreen()) > 25) {
                     current.setLocation(evt.getXOnScreen() - dx, evt.getYOnScreen() - dy);
@@ -140,9 +144,9 @@ public class Workspace extends JPanel {
             }
         }
         for (Point2D.Double node : current.nodes) {
-            if (node.distance(evt.getLocationOnScreen()) <= 25) {
+            if (node.distance(evt.getLocationOnScreen()) <= 20 || isDrawingWire) {
                 pointEnd = evt.getPoint();
-
+                isDrawingWire = true;
             }
 
         }
@@ -152,6 +156,15 @@ public class Workspace extends JPanel {
 
     private void formMouseReleased(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_formMouseReleased
         dragGate = false;
+        isDrawingWire = false;
+
+        for (Point2D.Double node : current.nodes) {
+            if (node.distance(evt.getLocationOnScreen()) <= 20) {
+
+            }
+
+        }
+
         if (pointStart != pointEnd) {
             for (Gate gate : gates) {
 
@@ -159,6 +172,9 @@ public class Workspace extends JPanel {
                     if (node.distance(evt.getLocationOnScreen()) <= 25) {
                         Wire temp = new Wire(pointStart, pointEnd, wireColor, gates);
                         temp.snapWire(gates);
+                        if (temp.x1 == temp.x2 && temp.y1 == temp.y2) {
+                            break;
+                        }
                         wires.add(temp);
                         repaint();
                     }
