@@ -27,7 +27,9 @@ public class AndGate extends Gate {
 
     @Override
     public boolean isConnected() {
-        return source && grounded && output && input1 && input2;
+        if(input1 && input2 && output)
+            return true;
+        return false;
     }
 
     @Override

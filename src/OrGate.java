@@ -1,5 +1,6 @@
 
 import java.awt.Graphics;
+import java.awt.geom.Point2D;
 
 /*
  * To change this license header, choose License Headers in Project Properties.
@@ -22,8 +23,10 @@ public class OrGate extends Gate {
 
     @Override
     public boolean isConnected() {
-
-        return input1 || input2;
+        if (input1 || input2 && output) {
+            return true;
+        }
+        return false;
 
     }
 
@@ -32,7 +35,7 @@ public class OrGate extends Gate {
         super.paint(g1);
         g1.drawLine(30, 0, 30, 25);
         g1.drawLine(70, 0, 70, 25);
-        
+
         g1.drawArc(5, -37, 90, 70, 220, 100);
         g1.drawLine(15, 60, 15, 20);
         g1.drawLine(85, 60, 85, 20);
@@ -42,7 +45,9 @@ public class OrGate extends Gate {
 
     @Override
     public void addNodes() {
-        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+        nodes.add(new Point2D.Double(this.getX() + 70, this.getY()));
+        nodes.add(new Point2D.Double(this.getX() + 30, this.getY()));
+        nodes.add(new Point2D.Double(this.getX() + 50, this.getY() + 100));
     }
 
 }
