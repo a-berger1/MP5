@@ -24,7 +24,7 @@ public class Workspace extends JPanel {
     public ArrayList<Wire> wires;
     public boolean undoWire = false;
     public Color wireColor = Color.BLACK;
-    private boolean lockGates = false;
+    public boolean lockGates;
     private boolean dragGate = false;
     private boolean isDrawingWire;
     int dx, dy;
@@ -35,6 +35,7 @@ public class Workspace extends JPanel {
      * Creates new form Workspace1
      */
     public Workspace() {
+        this.lockGates = false;
         this.wires = new ArrayList<>();
         this.gates = new ArrayList<>();
         initComponents();
