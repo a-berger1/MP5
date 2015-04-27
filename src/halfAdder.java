@@ -39,6 +39,7 @@ public class halfAdder extends Gate {
 //        g1.drawLine(0, 0, 0, 100);
 //        g1.drawLine(100, 0, 100, 100);
 //        g1.drawLine(0, 100, 100, 100);
+        
         g1.drawLine(25,0,25,5);
         g1.drawLine(75,0,75,5);
         g1.drawLine(0,50,5,50);
