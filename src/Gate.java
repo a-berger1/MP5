@@ -12,7 +12,6 @@ import java.awt.Graphics;
 import java.awt.Graphics2D;
 import java.awt.Point;
 import java.awt.event.MouseAdapter;
-import java.awt.event.MouseEvent;
 import java.awt.geom.Point2D;
 import java.util.ArrayList;
 import javax.swing.JLabel;
@@ -36,8 +35,9 @@ public abstract class Gate extends JLabel {
 
     public Gate() {
         this.nodes = new ArrayList<>();
-//    
+
         setBorder(new MatteBorder(1, 1, 1, 1, Color.BLACK));
+
         setMaximumSize(gateDim);
         setMinimumSize(gateDim);
         setPreferredSize(gateDim);
@@ -50,15 +50,13 @@ public abstract class Gate extends JLabel {
         super.paint(g1);
         Graphics2D g = (Graphics2D) g1;
         g.setStroke(new BasicStroke(10));
-        g.setColor(Color.RED);
+        g.setColor(Color.BLACK);
 
     }
 
     public abstract boolean isConnected();
 
-    public void addNodes() {
-
-    }
+    public abstract void addNodes();
 
     public void updateNodes() {
         while (this.nodes.size() > 0) {

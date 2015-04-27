@@ -23,10 +23,7 @@ public class OrGate extends Gate {
     @Override
     public boolean isConnected() {
 
-        if (input1 || input2) {
-            return true;
-        }
-        return false;
+        return input1 || input2;
 
     }
 
@@ -41,6 +38,11 @@ public class OrGate extends Gate {
         g1.drawLine(85, 60, 85, 20);
         g1.drawArc(15, 25, 70, 70, 180, 180);
 
+    }
+
+    @Override
+    public void addNodes() {
+        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
     }
 
 }

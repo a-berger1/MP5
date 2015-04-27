@@ -45,13 +45,15 @@ public class Workspace extends JPanel {
         this.wires = new ArrayList<>();
         this.gates = new ArrayList<>();
         initComponents();
-        Gate t = new Transistor();
+        Gate t = new halfAdder();
         add(t);
         t.setSize(100, 100);
         t.setLocation(300, 300);
         t.addNodes();
         currentNumTransistors++;
         gates.add(t);
+        
+        
 
     }
 
@@ -102,7 +104,7 @@ public class Workspace extends JPanel {
             }
 
         }
-        if (inGate && !inNodeZone) {
+        if (inGate) {
             dragGate = true;
             dx = evt.getXOnScreen() - current.getX();
             dy = evt.getYOnScreen() - current.getY();
