@@ -52,8 +52,6 @@ public class Workspace extends JPanel {
         t.addNodes();
         currentNumTransistors++;
         gates.add(t);
-        
-        
 
     }
 
@@ -186,6 +184,7 @@ public class Workspace extends JPanel {
                         }
                         wires.add(temp);
                         repaint();
+                        this.isConnected();
                     }
                 }
             }
@@ -226,6 +225,29 @@ public class Workspace extends JPanel {
         }
 
     }
+
+    public void isConnected() {
+        for (Wire wire : wires) {
+            for (Gate gate : gates) {
+                for (int i = 0; i < gate.nodes.size(); i++) {
+                    if ((wire.x1 == gate.nodes.get(i).x || wire.x2 == gate.nodes.get(i).x) && (wire.y1 == gate.nodes.get(i).y || wire.y2 == gate.nodes.get(i).y)) {
+                        switch (i) {
+                            case 0:
+                                gate.input2 = true;
+                                break;
+                            case 1:
+                                gate.input1 = true;
+                                break;
+                            case 2:
+                                gate.output = true;
+                                break;
+                        }
+                    }
+                }
+            }
+        }
+    }
+}
     // Variables declaration - do not modify//GEN-BEGIN:variables
     // End of variables declaration//GEN-END:variables
-}
+

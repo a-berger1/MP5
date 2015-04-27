@@ -23,11 +23,11 @@ import javax.swing.border.MatteBorder;
  */
 public abstract class Gate extends JLabel {
 
-    public boolean input1;
-    public boolean input2;
-    public boolean output;
-    public boolean source;
-    public boolean grounded;
+    public boolean input1=false;
+    public boolean input2=false;
+    public boolean output=false;
+    public boolean source=false;
+    public boolean grounded=false;
     public Dimension gateDim = new Dimension(100, 100);
     public ArrayList<Point2D.Double> nodes;
 
