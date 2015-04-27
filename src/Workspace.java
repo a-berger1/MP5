@@ -30,6 +30,12 @@ public class Workspace extends JPanel {
     int dx, dy;
     public ArrayList<Gate> gates;
     Gate current;
+    public int currentNumAndGates;
+    public int maxAndGates;
+    public int currentNumOrGates;
+    public int maxOrGates;
+    public int currentNumTransistors;
+    public int maxTransistors;
 
     /**
      * Creates new form Workspace1
@@ -44,7 +50,7 @@ public class Workspace extends JPanel {
         t.setSize(100, 100);
         t.setLocation(300, 300);
         t.addNodes();
-
+        currentNumTransistors++;
         gates.add(t);
 
     }

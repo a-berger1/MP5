@@ -468,30 +468,39 @@ public class main extends javax.swing.JFrame {
     }//GEN-LAST:event_clearCurrentColorBtnActionPerformed
 
     private void TransistorButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_TransistorButtonActionPerformed
-        Gate t = new Transistor();
-        Workspace.add(t);
-        t.setSize(100, 100);
-        t.setLocation(new Point(t.getParent().getWidth() - 240, t.getParent().getHeight() - 200));
-        Workspace.gates.add(t);
-        t.addNodes();
+        if (Workspace.currentNumTransistors < Workspace.maxTransistors) {
+            Gate t = new Transistor();
+            Workspace.add(t);
+            t.setSize(100, 100);
+            t.setLocation(new Point(t.getParent().getWidth() - 240, t.getParent().getHeight() - 200));
+            Workspace.gates.add(t);
+            t.addNodes();
+            Workspace.currentNumTransistors++;
+        }
     }//GEN-LAST:event_TransistorButtonActionPerformed
 
     private void AndButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_AndButtonActionPerformed
-        Gate t = new AndGate();
-        Workspace.add(t);
-        t.setSize(100, 100);
-        t.setLocation(new Point(t.getParent().getWidth() - 240, t.getParent().getHeight() - 200));
-        Workspace.gates.add(t);
-        t.addNodes();
+        if (Workspace.currentNumAndGates < Workspace.maxAndGates) {
+            Gate t = new AndGate();
+            Workspace.add(t);
+            t.setSize(100, 100);
+            t.setLocation(new Point(t.getParent().getWidth() - 240, t.getParent().getHeight() - 200));
+            Workspace.gates.add(t);
+            t.addNodes();
+            Workspace.currentNumAndGates++;
+        }
     }//GEN-LAST:event_AndButtonActionPerformed
 
     private void ORButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_ORButtonActionPerformed
-        Gate t = new OrGate();
-        Workspace.add(t);
-        t.setSize(100, 100);
-        t.setLocation(new Point(t.getParent().getWidth() - 240, t.getParent().getHeight() - 200));
-        Workspace.gates.add(t);
-        t.addNodes();
+        if (Workspace.currentNumOrGates < Workspace.maxOrGates) {
+            Gate t = new OrGate();
+            Workspace.add(t);
+            t.setSize(100, 100);
+            t.setLocation(new Point(t.getParent().getWidth() - 240, t.getParent().getHeight() - 200));
+            Workspace.gates.add(t);
+            t.addNodes();
+            Workspace.currentNumOrGates++;
+        }
     }//GEN-LAST:event_ORButtonActionPerformed
 
     private void lockBtnActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_lockBtnActionPerformed
@@ -500,8 +509,7 @@ public class main extends javax.swing.JFrame {
             lockBtn.setText("Lock Gates");
             Workspace.lockGates = false;
             isLocked = false;
-        }
-        else if (!isLocked) {
+        } else if (!isLocked) {
             lockBtn.setText("Unlock Gates");
             Workspace.lockGates = true;
             isLocked = true;
