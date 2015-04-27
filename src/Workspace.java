@@ -7,6 +7,7 @@ import java.awt.Point;
 import java.awt.geom.Point2D;
 import java.util.ArrayList;
 import javax.swing.JPanel;
+import java.lang.Class;
 
 /*
  * To change this license header, choose License Headers in Project Properties.
@@ -184,7 +185,7 @@ public class Workspace extends JPanel {
                         }
                         wires.add(temp);
                         repaint();
-                        this.isConnected();
+                        this.checkConnections();
                     }
                 }
             }
@@ -226,21 +227,24 @@ public class Workspace extends JPanel {
 
     }
 
-    public void isConnected() {
+    public void checkConnections() {
+        halfAdder d = new halfAdder();
         for (Wire wire : wires) {
             for (Gate gate : gates) {
-                for (int i = 0; i < gate.nodes.size(); i++) {
-                    if ((wire.x1 == gate.nodes.get(i).x || wire.x2 == gate.nodes.get(i).x) && (wire.y1 == gate.nodes.get(i).y || wire.y2 == gate.nodes.get(i).y)) {
-                        switch (i) {
-                            case 0:
-                                gate.input2 = true;
-                                break;
-                            case 1:
-                                gate.input1 = true;
-                                break;
-                            case 2:
-                                gate.output = true;
-                                break;
+                if (gate.getClass() !=  d.getClass()) {
+                    for (int i = 0; i < gate.nodes.size(); i++) {
+                        if ((wire.x1 == gate.nodes.get(i).x || wire.x2 == gate.nodes.get(i).x) && (wire.y1 == gate.nodes.get(i).y || wire.y2 == gate.nodes.get(i).y)) {
+                            switch (i) {
+                                case 0:
+                                    gate.input2 = true;
+                                    break;
+                                case 1:
+                                    gate.input1 = true;
+                                    break;
+                                case 2:
+                                    gate.output = true;
+                                    break;
+                            }
                         }
                     }
                 }
