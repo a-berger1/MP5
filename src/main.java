@@ -431,6 +431,7 @@ public class main extends javax.swing.JFrame {
         if (!Workspace.wires.isEmpty()) {
             Workspace.wires.remove(Workspace.wires.size() - 1);
             Workspace.undoWire = true;
+            Workspace.checkDisconnects();
             Workspace.repaint();
         }
 

@@ -255,8 +255,6 @@ public class Workspace extends JPanel {
             for (Gate gate : gates) {
 
                 for (int i = 0; i < gate.nodes.size(); i++) {
-                    
-                    
 
                     if ((wire.x1 == gate.nodes.get(i).x || wire.x2 == gate.nodes.get(i).x) && (wire.y1 == gate.nodes.get(i).y || wire.y2 == gate.nodes.get(i).y)) {
                         if (f.getClass().toString().equals(gate.getClass().toString())) {
@@ -273,34 +271,49 @@ public class Workspace extends JPanel {
                                     break;
 
                             }
-                        }
-                        switch (i) {
-                            case 0:
-                                gate.input2 = true;
-                                break;
-                            case 1:
-                                gate.input1 = true;
-                                break;
-                            case 2:
-                                gate.output = true;
-                                break;
+                        } else {
+                            switch (i) {
+                                case 0:
+                                    gate.input2 = true;
+                                    break;
+                                case 1:
+                                    gate.input1 = true;
+                                    break;
+                                case 2:
+                                    gate.output = true;
+                                    break;
 
+                            }
                         }
 
-                    } else {
-                        switch(i) {
-                            case 0:
-                                gate.input2 = false;
-                                break;
-                        }
                     }
-                    
+
                 }
 
             }
         }
     }
 
+    public void checkDisconnects() {
+        for(Gate gate: gates) {
+            for(int i = 0; i < gate.nodes.size(); i++) {
+                for(Wire wire: wires) {
+                    if((gate.nodes.get(i).x != wire.x1 || gate.nodes.get(i).x != wire.x2) && (gate.nodes.get(i).y != wire.y1 || gate.nodes.get(i).y != wire.y2 )) {
+                        switch(i) {
+                            case 0:
+                                gate.input2 = false;
+                                break;
+                            case 1:
+                                gate.input1 = false;
+                                break;
+                            case 2:
+                                gate.output = false;
+                        }
+                    }
+                }
+            }
+        }
+    }
 }
     // Variables declaration - do not modify//GEN-BEGIN:variables
     // End of variables declaration//GEN-END:variables
