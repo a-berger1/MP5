@@ -295,10 +295,26 @@ public class Workspace extends JPanel {
     }
 
     public void checkDisconnects() {
+        fullAdder f = new fullAdder();
         for(Gate gate: gates) {
             for(int i = 0; i < gate.nodes.size(); i++) {
                 for(Wire wire: wires) {
                     if((gate.nodes.get(i).x != wire.x1 || gate.nodes.get(i).x != wire.x2) && (gate.nodes.get(i).y != wire.y1 || gate.nodes.get(i).y != wire.y2 )) {
+                        if (f.getClass().toString().equals(gate.getClass().toString())) {
+                            switch (i) {
+                                case 0:
+                                    gate.input2 = false;
+                                    break;
+                                case 1:
+                                    gate.input1 = false;
+                                    break;
+                                case 2:
+                                    f = (fullAdder) gate;
+                                    f.input3 = false;
+                                    break;
+
+                            }
+                        }
                         switch(i) {
                             case 0:
                                 gate.input2 = false;
