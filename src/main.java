@@ -611,11 +611,7 @@ public class main extends javax.swing.JFrame {
             lockBtn.setText("Lock Gates");
             Workspace.lockGates = false;
             isLocked = false;
-        } else if (!isLocked) {
-            lockBtn.setText("Unlock Gates");
-            Workspace.lockGates = true;
-            isLocked = true;
-        }
+        } 
         currentLevel.setText("Current Level: " + level);
     }//GEN-LAST:event_jumpToActionPerformed
 
@@ -630,11 +626,7 @@ public class main extends javax.swing.JFrame {
             lockBtn.setText("Lock Gates");
             Workspace.lockGates = false;
             isLocked = false;
-        } else if (!isLocked) {
-            lockBtn.setText("Unlock Gates");
-            Workspace.lockGates = true;
-            isLocked = true;
-        }
+        } 
         currentLevel.setText("Current Level: " + level);
 
     }//GEN-LAST:event_nextLevelActionPerformed
@@ -650,11 +642,7 @@ public class main extends javax.swing.JFrame {
             lockBtn.setText("Lock Gates");
             Workspace.lockGates = false;
             isLocked = false;
-        } else if (!isLocked) {
-            lockBtn.setText("Unlock Gates");
-            Workspace.lockGates = true;
-            isLocked = true;
-        }
+        } 
         currentLevel.setText("Current Level: " + level);
     }//GEN-LAST:event_previousLevelActionPerformed
 
