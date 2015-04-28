@@ -35,7 +35,7 @@ public class main extends javax.swing.JFrame {
         initComponents();
 
         this.setExtendedState(main.MAXIMIZED_BOTH);
-        this.setUpLevel();
+        //this.setUpLevel();
 
     }
 
@@ -585,65 +585,65 @@ public class main extends javax.swing.JFrame {
         }
     }//GEN-LAST:event_FABtnActionPerformed
 
-    public void setUpLevel() throws FileNotFoundException, IOException {
-        FileReader fr = new FileReader("src\\Text Documents\\A.txt");
-        BufferedReader br = new BufferedReader(fr);
-        int temp;
-        String input;
-        String sources = "";
-        String answer = "";
-        input = br.readLine();
-        System.out.println(input);
-        for (int i = 1; i < level; i++) {
-            input = br.readLine();
-        }
-        
-        temp = input.indexOf("-");
-        sources = input.substring(0, temp);
-        input = input.substring(temp + 1);
-
-        temp = input.indexOf("-");
-        answer = input.substring(0, temp);
-        input = input.substring(temp + 1);
-
-        temp = input.indexOf("-");
-        Workspace.maxTransistors = Integer.parseInt(input.substring(0, temp));
-        input = input.substring(temp + 1);
-
-        temp = input.indexOf("-");
-        Workspace.maxAndGates = Integer.parseInt(input.substring(0, temp));
-        input = input.substring(temp + 1);
-
-        temp = input.indexOf("-");
-        Workspace.maxAndGates = Integer.parseInt(input.substring(0, temp));
-        input = input.substring(temp + 1);
-
-        temp = input.indexOf("-");
-        Workspace.maxAndGates = Integer.parseInt(input.substring(0, temp));
-        input = input.substring(temp + 1);
-
-        temp = input.indexOf("-");
-        Workspace.maxAndGates = Integer.parseInt(input.substring(0, temp));
-        input = input.substring(temp + 1);
-
-        temp = input.indexOf("-");
-        Workspace.maxAndGates = Integer.parseInt(input.substring(0, temp));
-        input = input.substring(temp + 1);
-
-        temp = input.indexOf("-");
-        Workspace.maxHalfAdder = Integer.parseInt(input.substring(0, temp));
-        input = input.substring(temp + 1);
-
-        temp = input.indexOf("-");
-        Workspace.maxFullAdder = Integer.parseInt(input.substring(0, temp));
-        input = input.substring(temp + 1);
-
-        jTextArea1.setText(input);
-        br.close();
-        fr.close();
-
-        
-    }
+//    public void setUpLevel() throws FileNotFoundException, IOException {
+//        FileReader fr = new FileReader("src\\Text Documents\\A.txt");
+//        BufferedReader br = new BufferedReader(fr);
+//        int temp;
+//        String input;
+//        String sources = "";
+//        String answer = "";
+//        input = br.readLine();
+//        System.out.println(input);
+//        for (int i = 1; i < level; i++) {
+//            input = br.readLine();
+//        }
+//        
+//        temp = input.indexOf("-");
+//        sources = input.substring(0, temp);
+//        input = input.substring(temp + 1);
+//
+//        temp = input.indexOf("-");
+//        answer = input.substring(0, temp);
+//        input = input.substring(temp + 1);
+//
+//        temp = input.indexOf("-");
+//        Workspace.maxTransistors = Integer.parseInt(input.substring(0, temp));
+//        input = input.substring(temp + 1);
+//
+//        temp = input.indexOf("-");
+//        Workspace.maxAndGates = Integer.parseInt(input.substring(0, temp));
+//        input = input.substring(temp + 1);
+//
+//        temp = input.indexOf("-");
+//        Workspace.maxAndGates = Integer.parseInt(input.substring(0, temp));
+//        input = input.substring(temp + 1);
+//
+//        temp = input.indexOf("-");
+//        Workspace.maxAndGates = Integer.parseInt(input.substring(0, temp));
+//        input = input.substring(temp + 1);
+//
+//        temp = input.indexOf("-");
+//        Workspace.maxAndGates = Integer.parseInt(input.substring(0, temp));
+//        input = input.substring(temp + 1);
+//
+//        temp = input.indexOf("-");
+//        Workspace.maxAndGates = Integer.parseInt(input.substring(0, temp));
+//        input = input.substring(temp + 1);
+//
+//        temp = input.indexOf("-");
+//        Workspace.maxHalfAdder = Integer.parseInt(input.substring(0, temp));
+//        input = input.substring(temp + 1);
+//
+//        temp = input.indexOf("-");
+//        Workspace.maxFullAdder = Integer.parseInt(input.substring(0, temp));
+//        input = input.substring(temp + 1);
+//
+//        jTextArea1.setText(input);
+//        br.close();
+//        fr.close();
+//
+//        
+//    }
 
     /**
      * @param args the command line arguments
