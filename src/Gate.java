@@ -52,6 +52,9 @@ public abstract class Gate extends JLabel {
         if(isConnected()) {
             g.setColor(Color.RED);
         }
+        else {
+            g.setColor(Color.BLACK);
+        }
 
     }
 

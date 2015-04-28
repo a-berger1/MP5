@@ -21,7 +21,7 @@ import java.io.IOException;
 public class main extends javax.swing.JFrame {
 
     boolean isLocked = false;
-    int level = 1;
+    int level = 2;
 
     /**
      * Creates new form main

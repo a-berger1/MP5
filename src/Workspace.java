@@ -255,6 +255,8 @@ public class Workspace extends JPanel {
             for (Gate gate : gates) {
 
                 for (int i = 0; i < gate.nodes.size(); i++) {
+                    
+                    
 
                     if ((wire.x1 == gate.nodes.get(i).x || wire.x2 == gate.nodes.get(i).x) && (wire.y1 == gate.nodes.get(i).y || wire.y2 == gate.nodes.get(i).y)) {
                         if (f.getClass().toString().equals(gate.getClass().toString())) {
@@ -285,7 +287,14 @@ public class Workspace extends JPanel {
 
                         }
 
+                    } else {
+                        switch(i) {
+                            case 0:
+                                gate.input2 = false;
+                                break;
+                        }
                     }
+                    
                 }
 
             }
