@@ -139,8 +139,9 @@ public class Workspace extends JPanel {
     }//GEN-LAST:event_formMousePressed
 
     private void formMouseDragged(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_formMouseDragged
-
-        if (dragGate && !lockGates) {
+        sourceGate s = new sourceGate();
+        groundGate g = new groundGate();
+        if (dragGate && !lockGates && !current.getClass().toString().equals(s.getClass().toString()) && !current.getClass().toString().equals(g.getClass().toString())) {
             for (Point2D.Double node : current.nodes) {
                 if (node.distance(evt.getLocationOnScreen()) > 25) {
                     current.setLocation(evt.getXOnScreen() - dx, evt.getYOnScreen() - dy);
