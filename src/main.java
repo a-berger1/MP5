@@ -53,7 +53,7 @@ public class main extends javax.swing.JFrame {
         Gate g = new groundGate();
         Workspace.add(g);
         g.setSize(Workspace.getWidth() / 6 * 5, 50);
-        g.setLocation(new Point(Workspace.getX() + Workspace.getWidth() / 7 * 2, Workspace.getWidth()));
+        g.setLocation(new Point(Workspace.getX() + Workspace.getWidth() / 7 * 2, Workspace.getHeight()));
         Workspace.gates.add(g);
         g.addNodes();
 
@@ -98,11 +98,11 @@ public class main extends javax.swing.JFrame {
         jScrollPane1 = new javax.swing.JScrollPane();
         jTextArea1 = new javax.swing.JTextArea();
         navBox = new javax.swing.JPanel();
+        currentLevel = new javax.swing.JLabel();
         nextLevel = new javax.swing.JButton();
         previousLevel = new javax.swing.JButton();
-        currentLevel = new javax.swing.JLabel();
-        jumpTo = new javax.swing.JTextField();
         jLabel1 = new javax.swing.JLabel();
+        jumpTo = new javax.swing.JTextField();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
         setAlwaysOnTop(true);
@@ -131,6 +131,7 @@ public class main extends javax.swing.JFrame {
 
         Red.setBackground(java.awt.Color.white);
         WireColor.add(Red);
+        Red.setFont(new java.awt.Font("Consolas", 1, 12)); // NOI18N
         Red.setText("Red");
         Red.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -141,6 +142,7 @@ public class main extends javax.swing.JFrame {
 
         Gray.setBackground(java.awt.Color.white);
         WireColor.add(Gray);
+        Gray.setFont(new java.awt.Font("Consolas", 1, 12)); // NOI18N
         Gray.setText("Gray");
         Gray.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -151,6 +153,7 @@ public class main extends javax.swing.JFrame {
 
         Pink.setBackground(java.awt.Color.white);
         WireColor.add(Pink);
+        Pink.setFont(new java.awt.Font("Consolas", 1, 12)); // NOI18N
         Pink.setText("Pink");
         Pink.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -161,6 +164,7 @@ public class main extends javax.swing.JFrame {
 
         Black.setBackground(java.awt.Color.white);
         WireColor.add(Black);
+        Black.setFont(new java.awt.Font("Consolas", 1, 12)); // NOI18N
         Black.setText("Black");
         Black.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -176,6 +180,7 @@ public class main extends javax.swing.JFrame {
         removeWiresPanel.setLayout(new java.awt.GridLayout(0, 1));
 
         undoLastWireBtn.setBackground(new java.awt.Color(255, 255, 255));
+        undoLastWireBtn.setFont(new java.awt.Font("Consolas", 1, 12)); // NOI18N
         undoLastWireBtn.setText("Last Placed");
         undoLastWireBtn.setFocusPainted(false);
         undoLastWireBtn.setFocusable(false);
@@ -190,6 +195,7 @@ public class main extends javax.swing.JFrame {
         removeWiresPanel.add(undoLastWireBtn);
 
         clearCurrentColorBtn.setBackground(new java.awt.Color(255, 255, 255));
+        clearCurrentColorBtn.setFont(new java.awt.Font("Consolas", 1, 12)); // NOI18N
         clearCurrentColorBtn.setText("Current Color");
         clearCurrentColorBtn.setFocusPainted(false);
         clearCurrentColorBtn.setFocusable(false);
@@ -204,6 +210,7 @@ public class main extends javax.swing.JFrame {
         removeWiresPanel.add(clearCurrentColorBtn);
 
         clearWiresBtn.setBackground(new java.awt.Color(255, 255, 255));
+        clearWiresBtn.setFont(new java.awt.Font("Consolas", 1, 12)); // NOI18N
         clearWiresBtn.setText("All Wires");
         clearWiresBtn.setFocusPainted(false);
         clearWiresBtn.setFocusable(false);
@@ -228,6 +235,7 @@ public class main extends javax.swing.JFrame {
         LockPanel.setBorder(javax.swing.BorderFactory.createTitledBorder(new javax.swing.border.MatteBorder(null), "Lock"));
         LockPanel.setLayout(new java.awt.GridLayout(1, 0));
 
+        lockBtn.setFont(new java.awt.Font("Consolas", 1, 12)); // NOI18N
         lockBtn.setText("Lock Gates");
         lockBtn.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -238,6 +246,7 @@ public class main extends javax.swing.JFrame {
 
         gatesPanel.add(LockPanel);
 
+        TransistorBtn.setFont(new java.awt.Font("Consolas", 1, 12)); // NOI18N
         TransistorBtn.setText("Add Transistor");
         TransistorBtn.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -246,6 +255,7 @@ public class main extends javax.swing.JFrame {
         });
         gatesPanel.add(TransistorBtn);
 
+        AndBtn.setFont(new java.awt.Font("Consolas", 1, 12)); // NOI18N
         AndBtn.setText("Add \"And\" Gate");
         AndBtn.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -254,6 +264,7 @@ public class main extends javax.swing.JFrame {
         });
         gatesPanel.add(AndBtn);
 
+        ORBtn.setFont(new java.awt.Font("Consolas", 1, 12)); // NOI18N
         ORBtn.setText("Add \"Or\" Gate");
         ORBtn.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -262,6 +273,7 @@ public class main extends javax.swing.JFrame {
         });
         gatesPanel.add(ORBtn);
 
+        XOrBtn.setFont(new java.awt.Font("Consolas", 1, 12)); // NOI18N
         XOrBtn.setText("Add \"XOr\" Gate");
         XOrBtn.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -270,6 +282,7 @@ public class main extends javax.swing.JFrame {
         });
         gatesPanel.add(XOrBtn);
 
+        HABtn.setFont(new java.awt.Font("Consolas", 1, 12)); // NOI18N
         HABtn.setText("Add Half Adder");
         HABtn.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -278,6 +291,7 @@ public class main extends javax.swing.JFrame {
         });
         gatesPanel.add(HABtn);
 
+        FABtn.setFont(new java.awt.Font("Consolas", 1, 12)); // NOI18N
         FABtn.setText("Add Full Adder");
         FABtn.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -308,7 +322,7 @@ public class main extends javax.swing.JFrame {
         WorkspaceLayout.setHorizontalGroup(
             WorkspaceLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(WorkspaceLayout.createSequentialGroup()
-                .addContainerGap(553, Short.MAX_VALUE)
+                .addContainerGap(441, Short.MAX_VALUE)
                 .addComponent(toolbar, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addContainerGap())
         );
@@ -367,13 +381,13 @@ public class main extends javax.swing.JFrame {
             textPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(textPanelLayout.createSequentialGroup()
                 .addGap(0, 0, 0)
-                .addComponent(jScrollPane1, javax.swing.GroupLayout.DEFAULT_SIZE, 122, Short.MAX_VALUE))
+                .addComponent(jScrollPane1, javax.swing.GroupLayout.DEFAULT_SIZE, 207, Short.MAX_VALUE))
         );
         textPanelLayout.setVerticalGroup(
             textPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(textPanelLayout.createSequentialGroup()
                 .addContainerGap()
-                .addComponent(jScrollPane1, javax.swing.GroupLayout.DEFAULT_SIZE, 558, Short.MAX_VALUE)
+                .addComponent(jScrollPane1, javax.swing.GroupLayout.DEFAULT_SIZE, 679, Short.MAX_VALUE)
                 .addContainerGap())
         );
 
@@ -388,60 +402,40 @@ public class main extends javax.swing.JFrame {
 
         navBox.setBackground(new java.awt.Color(204, 204, 204));
         navBox.setBorder(javax.swing.BorderFactory.createMatteBorder(2, 2, 2, 2, new java.awt.Color(255, 255, 255)));
+        navBox.setLayout(new java.awt.GridLayout(0, 1));
 
+        currentLevel.setFont(new java.awt.Font("Consolas", 1, 14)); // NOI18N
+        currentLevel.setText("Current Level: ");
+        navBox.add(currentLevel);
+
+        nextLevel.setFont(new java.awt.Font("Consolas", 1, 12)); // NOI18N
         nextLevel.setText("Next Level");
         nextLevel.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 nextLevelActionPerformed(evt);
             }
         });
+        navBox.add(nextLevel);
 
+        previousLevel.setFont(new java.awt.Font("Consolas", 1, 12)); // NOI18N
         previousLevel.setText("Previous Level");
         previousLevel.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 previousLevelActionPerformed(evt);
             }
         });
+        navBox.add(previousLevel);
 
-        currentLevel.setText("Current Level: ");
+        jLabel1.setFont(new java.awt.Font("Consolas", 1, 12)); // NOI18N
+        jLabel1.setText("Jump To Level: ");
+        navBox.add(jLabel1);
 
         jumpTo.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 jumpToActionPerformed(evt);
             }
         });
-
-        jLabel1.setText("Jump To Level: ");
-
-        javax.swing.GroupLayout navBoxLayout = new javax.swing.GroupLayout(navBox);
-        navBox.setLayout(navBoxLayout);
-        navBoxLayout.setHorizontalGroup(
-            navBoxLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(navBoxLayout.createSequentialGroup()
-                .addContainerGap()
-                .addGroup(navBoxLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(previousLevel)
-                    .addComponent(nextLevel)
-                    .addComponent(currentLevel)
-                    .addComponent(jLabel1)
-                    .addComponent(jumpTo, javax.swing.GroupLayout.PREFERRED_SIZE, 50, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addContainerGap(11, Short.MAX_VALUE))
-        );
-        navBoxLayout.setVerticalGroup(
-            navBoxLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(navBoxLayout.createSequentialGroup()
-                .addGap(22, 22, 22)
-                .addComponent(currentLevel)
-                .addGap(18, 18, 18)
-                .addComponent(nextLevel)
-                .addGap(18, 18, 18)
-                .addComponent(previousLevel)
-                .addGap(18, 18, 18)
-                .addComponent(jLabel1)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addComponent(jumpTo, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addContainerGap(61, Short.MAX_VALUE))
-        );
+        navBox.add(jumpTo);
 
         gridBagConstraints = new java.awt.GridBagConstraints();
         gridBagConstraints.gridx = 0;
