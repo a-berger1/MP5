@@ -37,10 +37,7 @@ public class fullAdder extends Gate {
     }
 
     public boolean isS() {
-        if ((input1 && !input2) || (!input1 && input2) || (input1 && input2 && input3)) {
-            return true;
-        }
-        return false;
+        return (input1 && !input2 &&!input3) || (!input1 && input2 && !input3) ||(!input1 && !input2 && input3) || (input1 && input2 && input3);
     }
 
     public boolean isC() {
