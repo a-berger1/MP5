@@ -31,17 +31,17 @@ public class Workspace extends JPanel {
     public ArrayList<Gate> gates;
     Gate current;
     public int currentNumAndGates;
-    public int maxAndGates = 10;
+    public int maxAndGates = 0;
     public int currentNumOrGates;
-    public int maxOrGates = 10;
+    public int maxOrGates = 0;
     public int currentNumTransistors;
-    public int maxTransistors = 10;
+    public int maxTransistors = 0;
     public int currentNumXOrGates;
-    public int maxXOrGates = 10;
+    public int maxXOrGates = 0;
     public int currentNumHalfAdder;
-    public int maxHalfAdder = 10;
+    public int maxHalfAdder = 0;
     public int currentNumFullAdder;
-    public int maxFullAdder = 10;
+    public int maxFullAdder = 0;
 
     /**
      * Creates new form Workspace1
@@ -51,13 +51,6 @@ public class Workspace extends JPanel {
         this.wires = new ArrayList<>();
         this.gates = new ArrayList<>();
         initComponents();
-        Gate t = new halfAdder();
-        add(t);
-        t.setSize(100, 100);
-        t.setLocation(300, 300);
-        t.addNodes();
-        currentNumTransistors++;
-        gates.add(t);
 
     }
 
