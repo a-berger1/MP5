@@ -31,16 +31,16 @@ public class Workspace extends JPanel {
     public ArrayList<Gate> gates;
     Gate current;
     public int currentNumAndGates;
-    public int maxAndGates = 0;
     public int currentNumOrGates;
-    public int maxOrGates = 0;
     public int currentNumTransistors;
-    public int maxTransistors = 0;
     public int currentNumXOrGates;
-    public int maxXOrGates = 0;
     public int currentNumHalfAdder;
-    public int maxHalfAdder = 0;
     public int currentNumFullAdder;
+    public int maxAndGates = 0;
+    public int maxOrGates = 0;
+    public int maxTransistors = 0;
+    public int maxXOrGates = 0;
+    public int maxHalfAdder = 0;
     public int maxFullAdder = 0;
 
     /**
@@ -296,10 +296,10 @@ public class Workspace extends JPanel {
 
     public void checkDisconnects() {
         fullAdder f = new fullAdder();
-        for(Gate gate: gates) {
-            for(int i = 0; i < gate.nodes.size(); i++) {
-                for(Wire wire: wires) {
-                    if((gate.nodes.get(i).x != wire.x1 || gate.nodes.get(i).x != wire.x2) && (gate.nodes.get(i).y != wire.y1 || gate.nodes.get(i).y != wire.y2 )) {
+        for (Gate gate : gates) {
+            for (int i = 0; i < gate.nodes.size(); i++) {
+                for (Wire wire : wires) {
+                    if ((gate.nodes.get(i).x != wire.x1 || gate.nodes.get(i).x != wire.x2) && (gate.nodes.get(i).y != wire.y1 || gate.nodes.get(i).y != wire.y2)) {
                         if (f.getClass().toString().equals(gate.getClass().toString())) {
                             switch (i) {
                                 case 0:
@@ -315,7 +315,7 @@ public class Workspace extends JPanel {
 
                             }
                         }
-                        switch(i) {
+                        switch (i) {
                             case 0:
                                 gate.input2 = false;
                                 break;
@@ -329,6 +329,15 @@ public class Workspace extends JPanel {
                 }
             }
         }
+    }
+
+    public void currentGates() {
+        currentNumAndGates = 0;
+        currentNumOrGates = 0;
+        currentNumTransistors = 0;
+        currentNumXOrGates = 0;
+        currentNumHalfAdder = 0;
+        currentNumFullAdder = 0;
     }
 }
     // Variables declaration - do not modify//GEN-BEGIN:variables

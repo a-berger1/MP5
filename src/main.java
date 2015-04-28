@@ -21,7 +21,7 @@ import java.io.IOException;
 public class main extends javax.swing.JFrame {
 
     boolean isLocked = false;
-    int level = 2;
+    int level = 1;
 
     /**
      * Creates new form main
@@ -36,23 +36,24 @@ public class main extends javax.swing.JFrame {
 
         this.setExtendedState(main.MAXIMIZED_BOTH);
         this.setUpLevel();
+        currentLevel.setText("Current Level: " + level);
         //create the source and ground gates
         Gate t = new sourceGate();
         Workspace.add(t);
-        t.setSize(Workspace.getWidth()/3, 50);
-        t.setLocation(new Point(Workspace.getX() + Workspace.getWidth()/4, 0));
+        t.setSize(Workspace.getWidth() / 3, 50);
+        t.setLocation(new Point(Workspace.getX() + Workspace.getWidth() / 4, 0));
         Workspace.gates.add(t);
         t.addNodes();
         Gate w = new sourceGate();
         Workspace.add(w);
-        w.setSize(Workspace.getWidth()/3, 50);
-        w.setLocation(new Point(Workspace.getWidth()/4 *3, 0));
+        w.setSize(Workspace.getWidth() / 3, 50);
+        w.setLocation(new Point(Workspace.getWidth() / 4 * 3, 0));
         Workspace.gates.add(w);
         w.addNodes();
         Gate g = new groundGate();
         Workspace.add(g);
-        g.setSize(Workspace.getWidth()/6*5, 50);
-        g.setLocation(new Point(Workspace.getX() + Workspace.getWidth() / 7*2, Workspace.getWidth()));
+        g.setSize(Workspace.getWidth() / 6 * 5, 50);
+        g.setLocation(new Point(Workspace.getX() + Workspace.getWidth() / 7 * 2, Workspace.getWidth()));
         Workspace.gates.add(g);
         g.addNodes();
 
@@ -97,6 +98,11 @@ public class main extends javax.swing.JFrame {
         jScrollPane1 = new javax.swing.JScrollPane();
         jTextArea1 = new javax.swing.JTextArea();
         navBox = new javax.swing.JPanel();
+        nextLevel = new javax.swing.JButton();
+        previousLevel = new javax.swing.JButton();
+        currentLevel = new javax.swing.JLabel();
+        jumpTo = new javax.swing.JTextField();
+        jLabel1 = new javax.swing.JLabel();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
         setAlwaysOnTop(true);
@@ -302,7 +308,7 @@ public class main extends javax.swing.JFrame {
         WorkspaceLayout.setHorizontalGroup(
             WorkspaceLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(WorkspaceLayout.createSequentialGroup()
-                .addContainerGap(582, Short.MAX_VALUE)
+                .addContainerGap(553, Short.MAX_VALUE)
                 .addComponent(toolbar, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addContainerGap())
         );
@@ -383,15 +389,58 @@ public class main extends javax.swing.JFrame {
         navBox.setBackground(new java.awt.Color(204, 204, 204));
         navBox.setBorder(javax.swing.BorderFactory.createMatteBorder(2, 2, 2, 2, new java.awt.Color(255, 255, 255)));
 
+        nextLevel.setText("Next Level");
+        nextLevel.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                nextLevelActionPerformed(evt);
+            }
+        });
+
+        previousLevel.setText("Previous Level");
+        previousLevel.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                previousLevelActionPerformed(evt);
+            }
+        });
+
+        currentLevel.setText("Current Level: ");
+
+        jumpTo.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jumpToActionPerformed(evt);
+            }
+        });
+
+        jLabel1.setText("Jump To Level: ");
+
         javax.swing.GroupLayout navBoxLayout = new javax.swing.GroupLayout(navBox);
         navBox.setLayout(navBoxLayout);
         navBoxLayout.setHorizontalGroup(
             navBoxLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 122, Short.MAX_VALUE)
+            .addGroup(navBoxLayout.createSequentialGroup()
+                .addContainerGap()
+                .addGroup(navBoxLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addComponent(previousLevel)
+                    .addComponent(nextLevel)
+                    .addComponent(currentLevel)
+                    .addComponent(jLabel1)
+                    .addComponent(jumpTo, javax.swing.GroupLayout.PREFERRED_SIZE, 50, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addContainerGap(11, Short.MAX_VALUE))
         );
         navBoxLayout.setVerticalGroup(
             navBoxLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 237, Short.MAX_VALUE)
+            .addGroup(navBoxLayout.createSequentialGroup()
+                .addGap(22, 22, 22)
+                .addComponent(currentLevel)
+                .addGap(18, 18, 18)
+                .addComponent(nextLevel)
+                .addGap(18, 18, 18)
+                .addComponent(previousLevel)
+                .addGap(18, 18, 18)
+                .addComponent(jLabel1)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addComponent(jumpTo, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addContainerGap(61, Short.MAX_VALUE))
         );
 
         gridBagConstraints = new java.awt.GridBagConstraints();
@@ -550,7 +599,81 @@ public class main extends javax.swing.JFrame {
         }
     }//GEN-LAST:event_FABtnActionPerformed
 
+    private void jumpToActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jumpToActionPerformed
+
+        level = Integer.parseInt(jumpTo.getText());
+        try {
+            setUpLevel();
+        } catch (IOException ex) {
+            Logger.getLogger(main.class.getName()).log(Level.SEVERE, null, ex);
+        }
+        if (isLocked) {
+            lockBtn.setText("Lock Gates");
+            Workspace.lockGates = false;
+            isLocked = false;
+        } else if (!isLocked) {
+            lockBtn.setText("Unlock Gates");
+            Workspace.lockGates = true;
+            isLocked = true;
+        }
+        currentLevel.setText("Current Level: " + level);
+    }//GEN-LAST:event_jumpToActionPerformed
+
+    private void nextLevelActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_nextLevelActionPerformed
+        level++;
+        try {
+            setUpLevel();
+        } catch (IOException ex) {
+            Logger.getLogger(main.class.getName()).log(Level.SEVERE, null, ex);
+        }
+        if (isLocked) {
+            lockBtn.setText("Lock Gates");
+            Workspace.lockGates = false;
+            isLocked = false;
+        } else if (!isLocked) {
+            lockBtn.setText("Unlock Gates");
+            Workspace.lockGates = true;
+            isLocked = true;
+        }
+        currentLevel.setText("Current Level: " + level);
+
+    }//GEN-LAST:event_nextLevelActionPerformed
+
+    private void previousLevelActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_previousLevelActionPerformed
+        level--;
+        try {
+            setUpLevel();
+        } catch (IOException ex) {
+            Logger.getLogger(main.class.getName()).log(Level.SEVERE, null, ex);
+        }
+        if (isLocked) {
+            lockBtn.setText("Lock Gates");
+            Workspace.lockGates = false;
+            isLocked = false;
+        } else if (!isLocked) {
+            lockBtn.setText("Unlock Gates");
+            Workspace.lockGates = true;
+            isLocked = true;
+        }
+        currentLevel.setText("Current Level: " + level);
+    }//GEN-LAST:event_previousLevelActionPerformed
+
     public void setUpLevel() throws FileNotFoundException, IOException {
+        int j;
+        while (Workspace.gates.size() > 3) {
+            Workspace.remove(Workspace.gates.get(3));
+            Workspace.gates.remove(3);
+            repaint();
+        }
+        while (!Workspace.wires.isEmpty()) {
+            j = Workspace.wires.size() - 1;
+            Workspace.wires.remove(j);
+        }
+        repaint();
+        Workspace.currentGates();
+
+        Workspace.repaint();
+
         FileReader fr = new FileReader("src\\Text Documents\\A.txt");
         BufferedReader br = new BufferedReader(fr);
         int temp;
@@ -649,11 +772,16 @@ public class main extends javax.swing.JFrame {
     private javax.swing.JButton XOrBtn;
     private javax.swing.JButton clearCurrentColorBtn;
     private javax.swing.JButton clearWiresBtn;
+    private javax.swing.JLabel currentLevel;
     private javax.swing.JPanel gatesPanel;
+    private javax.swing.JLabel jLabel1;
     private javax.swing.JScrollPane jScrollPane1;
     private javax.swing.JTextArea jTextArea1;
+    private javax.swing.JTextField jumpTo;
     private javax.swing.JButton lockBtn;
     private javax.swing.JPanel navBox;
+    private javax.swing.JButton nextLevel;
+    private javax.swing.JButton previousLevel;
     private javax.swing.JPanel removeWiresPanel;
     private javax.swing.JPanel textPanel;
     private javax.swing.JPanel toolPanel;
