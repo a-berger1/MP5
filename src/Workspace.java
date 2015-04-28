@@ -36,8 +36,8 @@ public class Workspace extends JPanel {
     public int maxOrGates = 10;
     public int currentNumTransistors;
     public int maxTransistors = 10;
-    public int currentNumXORGates;
-    public int maxXORGates = 10;
+    public int currentNumXOrGates;
+    public int maxXOrGates = 10;
     public int currentNumHalfAdder;
     public int maxHalfAdder = 10;
     public int currentNumFullAdder;
@@ -94,7 +94,7 @@ public class Workspace extends JPanel {
 
                 inGate = true;
                 current = gate;
-                System.out.println(gates.size());
+
                 //Right click to remove the gate
                 if (evt.isMetaDown()) {
                     switch (gate.getClass().toString()) {
@@ -111,7 +111,7 @@ public class Workspace extends JPanel {
                             currentNumOrGates--;
                             break;
                         case "class XORGate":
-                            currentNumXORGates--;
+                            currentNumXOrGates--;
                             break;
                         case "class Transistor":
                             currentNumTransistors--;
@@ -256,13 +256,28 @@ public class Workspace extends JPanel {
     }
 
     public void checkConnections() {
-        halfAdder d = new halfAdder();
+        fullAdder f = new fullAdder();
         for (Wire wire : wires) {
             for (Gate gate : gates) {
 
                 for (int i = 0; i < gate.nodes.size(); i++) {
 
                     if ((wire.x1 == gate.nodes.get(i).x || wire.x2 == gate.nodes.get(i).x) && (wire.y1 == gate.nodes.get(i).y || wire.y2 == gate.nodes.get(i).y)) {
+                        if (f.getClass().toString().equals(gate.getClass().toString())) {
+                            switch (i) {
+                                case 0:
+                                    gate.input2 = true;
+                                    break;
+                                case 1:
+                                    gate.input1 = true;
+                                    break;
+                                case 2:
+                                    f = (fullAdder) gate;
+                                    f.input3 = true;
+                                    break;
+
+                            }
+                        }
                         switch (i) {
                             case 0:
                                 gate.input2 = true;
@@ -273,6 +288,7 @@ public class Workspace extends JPanel {
                             case 2:
                                 gate.output = true;
                                 break;
+
                         }
 
                     }

@@ -23,9 +23,9 @@ public class fullAdder extends Gate {
     @Override
     public void addNodes() {
 
-        nodes.add(new Point2D.Double(this.getX() + 15, this.getY()));
         nodes.add(new Point2D.Double(this.getX() + 50, this.getY()));
         nodes.add(new Point2D.Double(this.getX() + 85, this.getY()));
+        nodes.add(new Point2D.Double(this.getX() + 15, this.getY()));
         nodes.add(new Point2D.Double(this.getX() + 50, this.getY() + 100));
         nodes.add(new Point2D.Double(this.getX(), this.getY() + 50));
 

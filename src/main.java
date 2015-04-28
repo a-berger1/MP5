@@ -544,15 +544,15 @@ public class main extends javax.swing.JFrame {
     }//GEN-LAST:event_lockBtnActionPerformed
 
     private void XOrBtnActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_XOrBtnActionPerformed
-//        if(Workspace.currentNumXOrGates < Workspace.maxXORGates) {
-//            Gate t = new XOrGate();
-//            Workspace.add(t);
-//            t.setSize(100,100);
-//            t.setLocation(new Point(t.getParent().getWidth() - 240, t.getParent().getHeight() - 200));
-//            Workspace.gates.add(t);
-//            t.addNodes();
-//            Workspace.currentNumXOrGates++;
-//        }
+        if(Workspace.currentNumXOrGates < Workspace.maxXOrGates) {
+            Gate t = new XOrGate();
+            Workspace.add(t);
+            t.setSize(100,100);
+            t.setLocation(new Point(t.getParent().getWidth() - 240, t.getParent().getHeight() - 200));
+            Workspace.gates.add(t);
+            t.addNodes();
+            Workspace.currentNumXOrGates++;
+        }
     }//GEN-LAST:event_XOrBtnActionPerformed
 
     private void HABtnActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_HABtnActionPerformed

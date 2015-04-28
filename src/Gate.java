@@ -6,12 +6,9 @@
 
 import java.awt.BasicStroke;
 import java.awt.Color;
-import java.awt.Container;
 import java.awt.Dimension;
 import java.awt.Graphics;
 import java.awt.Graphics2D;
-import java.awt.Point;
-import java.awt.event.MouseAdapter;
 import java.awt.geom.Point2D;
 import java.util.ArrayList;
 import javax.swing.JLabel;
@@ -53,7 +50,7 @@ public abstract class Gate extends JLabel {
         g.setStroke(new BasicStroke(10));
         g.setColor(Color.BLACK);
         if(isConnected()) {
-            g.setColor(Color.GREEN);
+            g.setColor(Color.RED);
         }
 
     }
