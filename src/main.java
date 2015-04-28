@@ -465,6 +465,7 @@ public class main extends javax.swing.JFrame {
             i = Workspace.wires.size() - 1;
             Workspace.wires.remove(i);
         }
+          Workspace.checkDisconnects();
         repaint();
 
     }//GEN-LAST:event_clearWiresBtnActionPerformed
@@ -506,6 +507,7 @@ public class main extends javax.swing.JFrame {
 
     private void clearCurrentColorBtnActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_clearCurrentColorBtnActionPerformed
         Workspace.clearCurrentColorWires();
+          Workspace.checkDisconnects();
     }//GEN-LAST:event_clearCurrentColorBtnActionPerformed
 
     private void TransistorBtnActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_TransistorBtnActionPerformed
