@@ -1,3 +1,1 @@
---t --and --or --xor --ha --fa --Text
-
---1 --0 --0 --0 --0 --0 --For The first level, you need one <b>Transistor</b>. Add it by clicking the <b>"Add Transistor"</b> button located in the <b>Gates</b> section of the <b>Toolbar</b>.<br><br> Drag the Transistor to the middle of the screen. <br><br> Now we are going to wire up this Transistor and talk about how it works. In order to draw wires, the <b>Lock Gates</b> button must be engaged. 
+f--f--1 --0 --0 --0 --0 --0 --For The first level, you need one Transistor. Add it by clicking the "Add Transistor" button located in the "Gates" section of the "Toolbar". Drag the Transistor to the middle of the screen. Now we are going to wire up this Transistor and talk about how it works. In order to draw wires, the Lock Gates button must be engaged. 

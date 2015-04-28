@@ -9,6 +9,10 @@ import java.util.logging.Logger;
 import javax.swing.UIManager;
 import javax.swing.UnsupportedLookAndFeelException;
 import java.awt.*;
+import java.io.BufferedReader;
+import java.io.FileNotFoundException;
+import java.io.FileReader;
+import java.io.IOException;
 
 /**
  *
@@ -17,11 +21,12 @@ import java.awt.*;
 public class main extends javax.swing.JFrame {
 
     boolean isLocked = false;
+    int level = 3;
 
     /**
      * Creates new form main
      */
-    public main() {
+    public main() throws IOException {
         try {
             UIManager.setLookAndFeel(UIManager.getSystemLookAndFeelClassName());
         } catch (ClassNotFoundException | InstantiationException | IllegalAccessException | UnsupportedLookAndFeelException ex) {
@@ -30,6 +35,7 @@ public class main extends javax.swing.JFrame {
         initComponents();
 
         this.setExtendedState(main.MAXIMIZED_BOTH);
+        this.setUpLevel();
 
     }
 
@@ -556,10 +562,10 @@ public class main extends javax.swing.JFrame {
     }//GEN-LAST:event_XOrBtnActionPerformed
 
     private void HABtnActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_HABtnActionPerformed
-        if(Workspace.currentNumHalfAdder < Workspace.maxHalfAdder) {
+        if (Workspace.currentNumHalfAdder < Workspace.maxHalfAdder) {
             Gate t = new halfAdder();
             Workspace.add(t);
-            t.setSize(100,100);
+            t.setSize(100, 100);
             t.setLocation(new Point(t.getParent().getWidth() - 240, t.getParent().getHeight() - 200));
             Workspace.gates.add(t);
             t.addNodes();
@@ -568,16 +574,75 @@ public class main extends javax.swing.JFrame {
     }//GEN-LAST:event_HABtnActionPerformed
 
     private void FABtnActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_FABtnActionPerformed
-        if(Workspace.currentNumFullAdder < Workspace.maxFullAdder) {
+        if (Workspace.currentNumFullAdder < Workspace.maxFullAdder) {
             Gate t = new fullAdder();
             Workspace.add(t);
-            t.setSize(100,100);
+            t.setSize(100, 100);
             t.setLocation(new Point(t.getParent().getWidth() - 240, t.getParent().getHeight() - 200));
             Workspace.gates.add(t);
             t.addNodes();
             Workspace.currentNumFullAdder++;
         }
     }//GEN-LAST:event_FABtnActionPerformed
+
+    public void setUpLevel() throws FileNotFoundException, IOException {
+        FileReader fr = new FileReader("src\\Text Documents\\A.txt");
+        BufferedReader br = new BufferedReader(fr);
+        int temp;
+        String input;
+        String sources = "";
+        String answer = "";
+        input = br.readLine();
+        System.out.println(input);
+        for (int i = 1; i < level; i++) {
+            input = br.readLine();
+        }
+        
+        temp = input.indexOf("-");
+        sources = input.substring(0, temp);
+        input = input.substring(temp + 1);
+
+        temp = input.indexOf("-");
+        answer = input.substring(0, temp);
+        input = input.substring(temp + 1);
+
+        temp = input.indexOf("-");
+        Workspace.maxTransistors = Integer.parseInt(input.substring(0, temp));
+        input = input.substring(temp + 1);
+
+        temp = input.indexOf("-");
+        Workspace.maxAndGates = Integer.parseInt(input.substring(0, temp));
+        input = input.substring(temp + 1);
+
+        temp = input.indexOf("-");
+        Workspace.maxAndGates = Integer.parseInt(input.substring(0, temp));
+        input = input.substring(temp + 1);
+
+        temp = input.indexOf("-");
+        Workspace.maxAndGates = Integer.parseInt(input.substring(0, temp));
+        input = input.substring(temp + 1);
+
+        temp = input.indexOf("-");
+        Workspace.maxAndGates = Integer.parseInt(input.substring(0, temp));
+        input = input.substring(temp + 1);
+
+        temp = input.indexOf("-");
+        Workspace.maxAndGates = Integer.parseInt(input.substring(0, temp));
+        input = input.substring(temp + 1);
+
+        temp = input.indexOf("-");
+        Workspace.maxHalfAdder = Integer.parseInt(input.substring(0, temp));
+        input = input.substring(temp + 1);
+
+        temp = input.indexOf("-");
+        Workspace.maxFullAdder = Integer.parseInt(input.substring(0, temp));
+        input = input.substring(temp + 1);
+
+        jTextArea1.setText(input);
+        br.close();
+        fr.close();
+
+    }
 
     /**
      * @param args the command line arguments
@@ -610,7 +675,11 @@ public class main extends javax.swing.JFrame {
         java.awt.EventQueue.invokeLater(new Runnable() {
             @Override
             public void run() {
-                new main().setVisible(true);
+                try {
+                    new main().setVisible(true);
+                } catch (IOException ex) {
+                    Logger.getLogger(main.class.getName()).log(Level.SEVERE, null, ex);
+                }
             }
         });
     }
