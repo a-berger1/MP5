@@ -7,7 +7,6 @@ import java.awt.Point;
 import java.awt.geom.Point2D;
 import java.util.ArrayList;
 import javax.swing.JPanel;
-import java.lang.Class;
 
 /*
  * To change this license header, choose License Headers in Project Properties.
@@ -37,6 +36,12 @@ public class Workspace extends JPanel {
     public int maxOrGates = 10;
     public int currentNumTransistors;
     public int maxTransistors = 10;
+    public int currentNumXORGates;
+    public int maxXORGates = 10;
+    public int currentNumHalfAdder;
+    public int maxHalfAdder = 10;
+    public int currentNumFullAdder;
+    public int maxFullAdder = 10;
 
     /**
      * Creates new form Workspace1
@@ -89,9 +94,32 @@ public class Workspace extends JPanel {
 
                 inGate = true;
                 current = gate;
+                System.out.println(gates.size());
                 //Right click to remove the gate
                 if (evt.isMetaDown()) {
+                    switch (gate.getClass().toString()) {
+                        case "class halfAdder":
+                            currentNumHalfAdder--;
+                            break;
+                        case "class fullAdder":
+                            currentNumFullAdder--;
+                            break;
+                        case "class AndGate":
+                            currentNumAndGates--;
+                            break;
+                        case "class OrGate":
+                            currentNumOrGates--;
+                            break;
+                        case "class XORGate":
+                            currentNumXORGates--;
+                            break;
+                        case "class Transistor":
+                            currentNumTransistors--;
+                            break;
+
+                    }
                     gate.removeGate();
+                    System.out.println(gates.size());
                 }
             }
 
@@ -231,26 +259,29 @@ public class Workspace extends JPanel {
         halfAdder d = new halfAdder();
         for (Wire wire : wires) {
             for (Gate gate : gates) {
-                if (gate.getClass() !=  d.getClass()) {
-                    for (int i = 0; i < gate.nodes.size(); i++) {
-                        if ((wire.x1 == gate.nodes.get(i).x || wire.x2 == gate.nodes.get(i).x) && (wire.y1 == gate.nodes.get(i).y || wire.y2 == gate.nodes.get(i).y)) {
-                            switch (i) {
-                                case 0:
-                                    gate.input2 = true;
-                                    break;
-                                case 1:
-                                    gate.input1 = true;
-                                    break;
-                                case 2:
-                                    gate.output = true;
-                                    break;
-                            }
+
+                for (int i = 0; i < gate.nodes.size(); i++) {
+
+                    if ((wire.x1 == gate.nodes.get(i).x || wire.x2 == gate.nodes.get(i).x) && (wire.y1 == gate.nodes.get(i).y || wire.y2 == gate.nodes.get(i).y)) {
+                        switch (i) {
+                            case 0:
+                                gate.input2 = true;
+                                break;
+                            case 1:
+                                gate.input1 = true;
+                                break;
+                            case 2:
+                                gate.output = true;
+                                break;
                         }
+
                     }
                 }
+
             }
         }
     }
+
 }
     // Variables declaration - do not modify//GEN-BEGIN:variables
     // End of variables declaration//GEN-END:variables

@@ -65,9 +65,12 @@ public class main extends javax.swing.JFrame {
         gatesPanel = new javax.swing.JPanel();
         LockPanel = new javax.swing.JPanel();
         lockBtn = new javax.swing.JButton();
-        TransistorButton = new javax.swing.JButton();
-        AndButton = new javax.swing.JButton();
-        ORButton = new javax.swing.JButton();
+        TransistorBtn = new javax.swing.JButton();
+        AndBtn = new javax.swing.JButton();
+        ORBtn = new javax.swing.JButton();
+        XOrBtn = new javax.swing.JButton();
+        HABtn = new javax.swing.JButton();
+        FABtn = new javax.swing.JButton();
         Sidebar = new javax.swing.JPanel();
         textPanel = new javax.swing.JPanel();
         jScrollPane1 = new javax.swing.JScrollPane();
@@ -240,7 +243,7 @@ public class main extends javax.swing.JFrame {
         gatesPanel.setLayout(new java.awt.GridLayout(0, 1));
 
         LockPanel.setBorder(javax.swing.BorderFactory.createTitledBorder(new javax.swing.border.MatteBorder(null), "Lock"));
-        LockPanel.setLayout(new java.awt.GridLayout());
+        LockPanel.setLayout(new java.awt.GridLayout(1, 0));
 
         lockBtn.setText("Lock Gates");
         lockBtn.addActionListener(new java.awt.event.ActionListener() {
@@ -252,29 +255,53 @@ public class main extends javax.swing.JFrame {
 
         gatesPanel.add(LockPanel);
 
-        TransistorButton.setText("Add Transistor");
-        TransistorButton.addActionListener(new java.awt.event.ActionListener() {
+        TransistorBtn.setText("Add Transistor");
+        TransistorBtn.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                TransistorButtonActionPerformed(evt);
+                TransistorBtnActionPerformed(evt);
             }
         });
-        gatesPanel.add(TransistorButton);
+        gatesPanel.add(TransistorBtn);
 
-        AndButton.setText("Add \"And\" Gate");
-        AndButton.addActionListener(new java.awt.event.ActionListener() {
+        AndBtn.setText("Add \"And\" Gate");
+        AndBtn.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                AndButtonActionPerformed(evt);
+                AndBtnActionPerformed(evt);
             }
         });
-        gatesPanel.add(AndButton);
+        gatesPanel.add(AndBtn);
 
-        ORButton.setText("Add \"Or\" Gate");
-        ORButton.addActionListener(new java.awt.event.ActionListener() {
+        ORBtn.setText("Add \"Or\" Gate");
+        ORBtn.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                ORButtonActionPerformed(evt);
+                ORBtnActionPerformed(evt);
             }
         });
-        gatesPanel.add(ORButton);
+        gatesPanel.add(ORBtn);
+
+        XOrBtn.setText("Add \"XOr\" Gate");
+        XOrBtn.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                XOrBtnActionPerformed(evt);
+            }
+        });
+        gatesPanel.add(XOrBtn);
+
+        HABtn.setText("Add Half Adder");
+        HABtn.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                HABtnActionPerformed(evt);
+            }
+        });
+        gatesPanel.add(HABtn);
+
+        FABtn.setText("Add Full Adder");
+        FABtn.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                FABtnActionPerformed(evt);
+            }
+        });
+        gatesPanel.add(FABtn);
 
         toolPanel.add(gatesPanel);
 
@@ -370,7 +397,7 @@ public class main extends javax.swing.JFrame {
             textPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(textPanelLayout.createSequentialGroup()
                 .addContainerGap()
-                .addComponent(jScrollPane1, javax.swing.GroupLayout.DEFAULT_SIZE, 451, Short.MAX_VALUE)
+                .addComponent(jScrollPane1, javax.swing.GroupLayout.DEFAULT_SIZE, 558, Short.MAX_VALUE)
                 .addContainerGap())
         );
 
@@ -394,7 +421,7 @@ public class main extends javax.swing.JFrame {
         );
         navBoxLayout.setVerticalGroup(
             navBoxLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 191, Short.MAX_VALUE)
+            .addGap(0, 236, Short.MAX_VALUE)
         );
 
         gridBagConstraints = new java.awt.GridBagConstraints();
@@ -467,7 +494,7 @@ public class main extends javax.swing.JFrame {
         Workspace.clearCurrentColorWires();
     }//GEN-LAST:event_clearCurrentColorBtnActionPerformed
 
-    private void TransistorButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_TransistorButtonActionPerformed
+    private void TransistorBtnActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_TransistorBtnActionPerformed
         if (Workspace.currentNumTransistors < Workspace.maxTransistors) {
             Gate t = new Transistor();
             Workspace.add(t);
@@ -477,9 +504,9 @@ public class main extends javax.swing.JFrame {
             t.addNodes();
             Workspace.currentNumTransistors++;
         }
-    }//GEN-LAST:event_TransistorButtonActionPerformed
+    }//GEN-LAST:event_TransistorBtnActionPerformed
 
-    private void AndButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_AndButtonActionPerformed
+    private void AndBtnActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_AndBtnActionPerformed
         if (Workspace.currentNumAndGates < Workspace.maxAndGates) {
             Gate t = new AndGate();
             Workspace.add(t);
@@ -489,9 +516,9 @@ public class main extends javax.swing.JFrame {
             t.addNodes();
             Workspace.currentNumAndGates++;
         }
-    }//GEN-LAST:event_AndButtonActionPerformed
+    }//GEN-LAST:event_AndBtnActionPerformed
 
-    private void ORButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_ORButtonActionPerformed
+    private void ORBtnActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_ORBtnActionPerformed
         if (Workspace.currentNumOrGates < Workspace.maxOrGates) {
             Gate t = new OrGate();
             Workspace.add(t);
@@ -501,7 +528,7 @@ public class main extends javax.swing.JFrame {
             t.addNodes();
             Workspace.currentNumOrGates++;
         }
-    }//GEN-LAST:event_ORButtonActionPerformed
+    }//GEN-LAST:event_ORBtnActionPerformed
 
     private void lockBtnActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_lockBtnActionPerformed
 
@@ -515,6 +542,42 @@ public class main extends javax.swing.JFrame {
             isLocked = true;
         }
     }//GEN-LAST:event_lockBtnActionPerformed
+
+    private void XOrBtnActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_XOrBtnActionPerformed
+//        if(Workspace.currentNumXOrGates < Workspace.maxXORGates) {
+//            Gate t = new XOrGate();
+//            Workspace.add(t);
+//            t.setSize(100,100);
+//            t.setLocation(new Point(t.getParent().getWidth() - 240, t.getParent().getHeight() - 200));
+//            Workspace.gates.add(t);
+//            t.addNodes();
+//            Workspace.currentNumXOrGates++;
+//        }
+    }//GEN-LAST:event_XOrBtnActionPerformed
+
+    private void HABtnActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_HABtnActionPerformed
+        if(Workspace.currentNumHalfAdder < Workspace.maxHalfAdder) {
+            Gate t = new halfAdder();
+            Workspace.add(t);
+            t.setSize(100,100);
+            t.setLocation(new Point(t.getParent().getWidth() - 240, t.getParent().getHeight() - 200));
+            Workspace.gates.add(t);
+            t.addNodes();
+            Workspace.currentNumHalfAdder++;
+        }
+    }//GEN-LAST:event_HABtnActionPerformed
+
+    private void FABtnActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_FABtnActionPerformed
+        if(Workspace.currentNumFullAdder < Workspace.maxFullAdder) {
+            Gate t = new fullAdder();
+            Workspace.add(t);
+            t.setSize(100,100);
+            t.setLocation(new Point(t.getParent().getWidth() - 240, t.getParent().getHeight() - 200));
+            Workspace.gates.add(t);
+            t.addNodes();
+            Workspace.currentNumFullAdder++;
+        }
+    }//GEN-LAST:event_FABtnActionPerformed
 
     /**
      * @param args the command line arguments
@@ -554,19 +617,22 @@ public class main extends javax.swing.JFrame {
 
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
-    private javax.swing.JButton AndButton;
+    private javax.swing.JButton AndBtn;
     private javax.swing.JRadioButton Black;
+    private javax.swing.JButton FABtn;
     private javax.swing.JRadioButton Gray;
+    private javax.swing.JButton HABtn;
     private javax.swing.JPanel LockPanel;
-    private javax.swing.JButton ORButton;
+    private javax.swing.JButton ORBtn;
     private javax.swing.JRadioButton Pink;
     private javax.swing.JRadioButton Red;
     private javax.swing.JPanel Sidebar;
-    private javax.swing.JButton TransistorButton;
+    private javax.swing.JButton TransistorBtn;
     private javax.swing.ButtonGroup WireColor;
     private javax.swing.JPanel WireColorPanel;
     private javax.swing.JPanel WirePanel;
     private Workspace Workspace;
+    private javax.swing.JButton XOrBtn;
     private javax.swing.JButton clearCurrentColorBtn;
     private javax.swing.JButton clearWiresBtn;
     private javax.swing.JPanel gatesPanel;

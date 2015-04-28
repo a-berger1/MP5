@@ -70,8 +70,9 @@ public abstract class Gate extends JLabel {
     }
 
     public void removeGate() {
-        Container parent = this.getParent();
+        Workspace parent = (Workspace) this.getParent();
         parent.remove(this);
+        parent.gates.remove(this);
         parent.revalidate();
         parent.repaint();
     }
