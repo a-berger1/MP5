@@ -21,26 +21,94 @@ public class Workspace extends JPanel {
 
     private Point pointStart;
     private Point pointEnd;
+
+    /**
+     *
+     */
     public ArrayList<Wire> wires;
+
+    /**
+     *
+     */
     public boolean undoWire = false;
+
+    /**
+     *
+     */
     public Color wireColor = Color.BLACK;
+
+    /**
+     *
+     */
     public boolean lockGates;
     private boolean dragGate = false;
     private boolean isDrawingWire;
     int dx, dy;
+
+    /**
+     *
+     */
     public ArrayList<Gate> gates;
     Gate current;
+
+    /**
+     *
+     */
     public int currentNumAndGates;
+
+    /**
+     *
+     */
     public int currentNumOrGates;
+
+    /**
+     *
+     */
     public int currentNumTransistors;
+
+    /**
+     *
+     */
     public int currentNumXOrGates;
+
+    /**
+     *
+     */
     public int currentNumHalfAdder;
+
+    /**
+     *
+     */
     public int currentNumFullAdder;
+
+    /**
+     *
+     */
     public int maxAndGates = 0;
+
+    /**
+     *
+     */
     public int maxOrGates = 0;
+
+    /**
+     *
+     */
     public int maxTransistors = 0;
+
+    /**
+     *
+     */
     public int maxXOrGates = 0;
+
+    /**
+     *
+     */
     public int maxHalfAdder = 0;
+
+    /**
+     *
+     */
     public int maxFullAdder = 0;
 
     /**
@@ -141,6 +209,8 @@ public class Workspace extends JPanel {
     private void formMouseDragged(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_formMouseDragged
         sourceGate s = new sourceGate();
         groundGate g = new groundGate();
+
+        //if gates arent locked, currently are dragging gate, and not on a source or ground block for every node if more than 25 pixels away from said node set the location of the current gate.
         if (dragGate && !lockGates && !current.getClass().toString().equals(s.getClass().toString()) && !current.getClass().toString().equals(g.getClass().toString())) {
             for (Point2D.Double node : current.nodes) {
                 if (node.distance(evt.getLocationOnScreen()) > 25) {
@@ -173,6 +243,8 @@ public class Workspace extends JPanel {
                 }
             }
         }
+
+        //if within 20 pixels of a node, or isDrawingWIre is true, set the end point of the wire.
         for (Point2D.Double node : current.nodes) {
             if (node.distance(evt.getLocationOnScreen()) <= 20 || isDrawingWire) {
                 pointEnd = evt.getPoint();
@@ -180,21 +252,15 @@ public class Workspace extends JPanel {
             }
 
         }
-
+//repaint at the end of every onDrag.
         repaint();
     }//GEN-LAST:event_formMouseDragged
 
     private void formMouseReleased(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_formMouseReleased
         dragGate = false;
-        isDrawingWire = false;
+        isDrawingWire = false;     
 
-        for (Point2D.Double node : current.nodes) {
-            if (node.distance(evt.getLocationOnScreen()) <= 20) {
-
-            }
-
-        }
-
+// If over a different node from the starting node for the wire, draw the wire.
         if (pointStart != pointEnd) {
             for (Gate gate : gates) {
 
@@ -212,15 +278,19 @@ public class Workspace extends JPanel {
                 }
             }
         }
-
+//repaint at the end of onRelease.
         repaint();
-
+//Set the wire drawing variables back to null.
         pointStart = null;
         pointEnd = null;
 
     }//GEN-LAST:event_formMouseReleased
 
+    /**
+     *
+     */
     public void clearCurrentColorWires() {
+        //remove all the wires of the current  color wireColor.
         for (int i = wires.size() - 1; i >= 0; i--) {
             if (wires.get(i).getColor() == wireColor) {
                 wires.remove(i);
@@ -229,18 +299,30 @@ public class Workspace extends JPanel {
         repaint();
     }
 
+    /**
+     *Overriding of paint, to draw all the necessary gates and wire components.
+     * @param g the graphics to be painted
+     */
     @Override
     public void paint(Graphics g) {
+        
+     
+        
+        //calls the super class paint, to take care of all the standard panel paint needs.
         super.paint(g);
+        
+        
         Graphics2D g2 = (Graphics2D) g;
-        //Only runs while the mouse is being dragged. Constantly draws wires while the mouse is being dragged.
+       
+//Only runs while the mouse is being dragged. Constantly draws wires while the mouse is being dragged.
         if (pointStart != null && pointEnd != null) {
             g.setColor(wireColor);
             g2.setStroke(new BasicStroke(10));
             g2.drawLine(pointStart.x, pointStart.y, pointEnd.x, pointEnd.y);
         }
-        //Only runs if the mouse was just released or if the undoLastWireBtn is pressed. Keeps wires drawn on the screen
+        
 
+//Only runs if the mouse was just released or if the undoLastWireBtn is pressed. Keeps wires drawn on the screen
         g2.setStroke(new BasicStroke(10));
         for (Wire wire : wires) {
             g.setColor(wire.getColor());
@@ -248,14 +330,20 @@ public class Workspace extends JPanel {
         }
 
     }
+    
+ 
 
-    public void checkConnections() {
+    /**
+     *checks every node to see if a wire is connected to it.If a wire is there, it toggles the node boolean.
+     */
+        public void checkConnections() {
+        
         fullAdder f = new fullAdder();
         for (Wire wire : wires) {
             for (Gate gate : gates) {
 
                 for (int i = 0; i < gate.nodes.size(); i++) {
-
+//sets nodes to true for full adder specifically
                     if ((wire.x1 == gate.nodes.get(i).x || wire.x2 == gate.nodes.get(i).x) && (wire.y1 == gate.nodes.get(i).y || wire.y2 == gate.nodes.get(i).y)) {
                         if (f.getClass().toString().equals(gate.getClass().toString())) {
                             switch (i) {
@@ -272,6 +360,7 @@ public class Workspace extends JPanel {
 
                             }
                         } else {
+//sets nodes to true for typical gates.
                             switch (i) {
                                 case 0:
                                     gate.input2 = true;
@@ -293,8 +382,12 @@ public class Workspace extends JPanel {
             }
         }
     }
-
+    
+    /**
+     * checks to see if a wire is disconnected from a node.
+     */
     public void checkDisconnects() {
+    //mirrors check connects.
         fullAdder f = new fullAdder();
         for (Gate gate : gates) {
             for (int i = 0; i < gate.nodes.size(); i++) {
@@ -331,7 +424,10 @@ public class Workspace extends JPanel {
         }
     }
 
-    public void currentGates() {
+    /**
+     *Resets the number of every type of gate to zero.
+     */
+    public void resetGates() {
         currentNumAndGates = 0;
         currentNumOrGates = 0;
         currentNumTransistors = 0;

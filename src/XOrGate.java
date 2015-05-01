@@ -10,7 +10,7 @@ import java.awt.geom.Point2D;
  * and open the template in the editor.
  */
 /**
- *
+ *XOr gate extends gate. If either input is on output is on. if both inputs are on output is false.
  * @author Noah
  */
 public class XOrGate extends Gate {

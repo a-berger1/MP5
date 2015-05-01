@@ -25,6 +25,7 @@ public class main extends javax.swing.JFrame {
 
     /**
      * Creates new form main
+     * @throws java.io.IOException
      */
     public main() throws IOException {
         try {
@@ -642,8 +643,16 @@ public class main extends javax.swing.JFrame {
         currentLevel.setText("Current Level: " + level);
     }//GEN-LAST:event_previousLevelActionPerformed
 
+    /**
+     *Sets up the workspace and reads in the levels from the file
+     * 
+     * @throws FileNotFoundException
+     * @throws IOException
+     */
     public void setUpLevel() throws FileNotFoundException, IOException {
         int j;
+        
+        //Make sure wires and gate arrays are empty
         while (Workspace.gates.size() > 3) {
             Workspace.remove(Workspace.gates.get(3));
             Workspace.gates.remove(3);
@@ -654,7 +663,7 @@ public class main extends javax.swing.JFrame {
             Workspace.wires.remove(j);
         }
         repaint();
-        Workspace.currentGates();
+        Workspace.resetGates();
 
         Workspace.repaint();
 

@@ -9,7 +9,10 @@ import java.awt.geom.Point2D;
  * and open the template in the editor.
  */
 /**
- *
+ *full adder extends gate, is similar to a half adder, but has three inputs. 
+ * If one input is on, it outputs just like the half adder, 
+ * likewise if two of the pins are on. if all three pins are on,
+ * both the signal and carry pin come on.
  * @author Andy
  */
 public class fullAdder extends Gate {

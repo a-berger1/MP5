@@ -9,11 +9,14 @@ import java.awt.geom.Point2D;
  * and open the template in the editor.
  */
 /**
- *
+ *Transistor Class, creates a gate with one input, one output, and a switch line.
  * @author Noah
  */
 public class Transistor extends Gate {
     
+    /**
+     * Default constructor, does nothing special.
+     */
     public Transistor() {
         
     }

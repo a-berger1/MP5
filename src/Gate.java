@@ -20,17 +20,47 @@ import javax.swing.border.MatteBorder;
  */
 public abstract class Gate extends JLabel {
 
+    /**
+     *Upper right input.
+     */
     public boolean input1=false;
+
+    /**
+     *NExt input moving in the counter clockwise direction
+     */
     public boolean input2=false;
+
+    /**
+     * next input in the counter clockwise direction
+     */
     public boolean output=false;
+
+    /**
+     * if gate is a source gate
+     */
     public boolean source=false;
+
+    /**
+     * if gate is a grounded gate
+     */
     public boolean grounded=false;
-    public Dimension gateDim = new Dimension(100, 100);
+
+    /**
+     * the dimension of a gate
+     */
+    private final Dimension gateDim = new Dimension(100, 100);
+
+    /**
+     *the arraylist of nodes in a gate
+     */
     public ArrayList<Point2D.Double> nodes;
 
     
     int dx, dy;
 
+    /**
+     * Default constructor
+     */
     public Gate() {
         this.nodes = new ArrayList<>();
 
@@ -42,13 +72,17 @@ public abstract class Gate extends JLabel {
 
     }
 
+    /**
+     *OVerride of paint to draw gate specific parts.
+     * @param g1 graphics to paint
+     */
     @Override
     public void paint(Graphics g1) {
 
         super.paint(g1);
         Graphics2D g = (Graphics2D) g1;
         g.setStroke(new BasicStroke(10));
-        g.setColor(Color.BLACK);
+  // set color to draw gate lines with
         if(isConnected()) {
             g.setColor(Color.RED);
         }
@@ -58,10 +92,20 @@ public abstract class Gate extends JLabel {
 
     }
 
+    /**
+     *Abstract class that checks to see if the current gate is connected
+     * @return if gate is connected
+     */
     public abstract boolean isConnected();
 
+    /**
+     *abstract class to add nodes to the gate arraylist
+     */
     public abstract void addNodes();
 
+    /**
+     * removes all the nodes, then adds new nodes calculated based on current position
+     */
     public void updateNodes() {
         while (this.nodes.size() > 0) {
             this.nodes.remove(0);
@@ -69,6 +113,9 @@ public abstract class Gate extends JLabel {
         this.addNodes();
     }
 
+    /**
+     * removes current gate from its parent workspace
+     */
     public void removeGate() {
         Workspace parent = (Workspace) this.getParent();
         parent.remove(this);

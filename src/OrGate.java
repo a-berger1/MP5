@@ -8,7 +8,7 @@ import java.awt.geom.Point2D;
  * and open the template in the editor.
  */
 /**
- *
+ *Extends gate, output is on if either or both inputs are on.
  * @author Noah
  */
 public class OrGate extends Gate {

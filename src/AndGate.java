@@ -8,13 +8,14 @@ import java.awt.geom.Point2D;
  * and open the template in the editor.
  */
 /**
- *
+ *Extends gate, makes an and gate, with two inputs. in order to output, both inputs must be true.
  * @author Noah
  */
 public class AndGate extends Gate {
 
-    
-
+    /**Default constructor
+     *
+     */
     public AndGate() {
 
     }

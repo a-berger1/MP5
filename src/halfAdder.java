@@ -9,11 +9,14 @@ import java.awt.geom.Point2D;
  * and open the template in the editor.
  */
 /**
- *
+ * outputs on the signal pin if one of the inputs is on. if both are on, outputs on the carry pin.
  * @author Noah
  */
 public class halfAdder extends Gate {
 
+    /**
+     *Default constructor, does nothing special.
+     */
     public halfAdder() {
 
     }
@@ -33,6 +36,10 @@ public class halfAdder extends Gate {
         return false;
     }
 
+    /**
+     *Returns true if signal out is on.
+     * @return if Signal out is to be on.
+     */
     public boolean isS() {
         if (input1 && !input2 || !input1 && input2) {
             return true;
@@ -40,20 +47,17 @@ public class halfAdder extends Gate {
         return false;
     }
 
+    /**
+     *Returns true if Carry bit is to be on.
+     * @return return true if carry bit is on.
+     */
     public boolean isC() {
-        if (input1 && input2) {
-            return true;
-        }
-        return false;
+        return input1 && input2;
     }
 
     @Override
     public void paint(Graphics g1) {
         super.paint(g1);
-//        g1.drawLine(0, 0, 100, 0);
-//        g1.drawLine(0, 0, 0, 100);
-//        g1.drawLine(100, 0, 100, 100);
-//        g1.drawLine(0, 100, 100, 100);
 
         if (this.input1) {
             g1.setColor(Color.RED);
